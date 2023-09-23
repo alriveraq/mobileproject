@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Categoria } from './interface-admin/categoria';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { AngularFirestore,AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Producto } from './interface-admin/producto';
 import { Empleados } from './interface-admin/empleados';
 

@@ -12,7 +12,7 @@
   </ion-header>
 
 
-  <<ion-content padding>
+  <ion-content padding>
     <form [formGroup]="empleadoForm"  (ngSubmit)="onformSubmit(empleadoForm.value)">
       <ion-item>
         <ion-label position="floating">Nombre</ion-label>
@@ -23,13 +23,8 @@
         <ion-input type="text" [(ngModel)]="empleado.apellidos" formControlName="empleado_apellidos"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Fecha de nacimiento del empleado</ion-label>
-        <ion-datetime
-          [(ngModel)]="empleado.fecha_nacimiento"
-          formControlName="empleado_fecha_nacimiento"
-          displayFormat="DD/MM/YYYY"
-          pickerFormat="DD/MM/YYYY"
-        ></ion-datetime>
+        <ion-label position="floating">Fecha de nacimiento</ion-label>
+        <ion-input type="text" [(ngModel)]="empleado.fecha_nacimiento" formControlName="empleado_fecha_nacimiento"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Rut</ion-label>

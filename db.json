@@ -29,7 +29,7 @@
       "id": 2,
       "nombre": "Alejandro",
       "apellidos": "Rivera",
-      "fecha_nacimiento": "2001-10-24T23:35:00",
+      "fecha_nacimiento": "2021-05-27T23:47:00",
       "rut": "11111111-1",
       "direccion": "Calle falsa 111",
       "telefono": "+569 12345679",
@@ -38,19 +38,16 @@
       "img": "https://media.solotodo.com/media/products/MSI_N210-MD1G-D3.jpg"
     },
     {
-      "nombre": "Maxell DDR4-U4 2400M4GB (1 x 4GB | DIMM DDR4-2400)",
-      "img": "https://media.solotodo.com/media/products/1534822_picture_1662472616.jpg",
-      "gpu": null,
-      "memoria": null,
-      "frecuencia": "2400 MHz",
-      "bus": null,
-      "precio": 24,
-      "capacidad": "1 x 4 GB",
-      "tipo": "DDR4",
-      "formato": "DIMM",
-      "voltaje": "1.20 V",
-      "tipo_producto": "RAM",
-      "id": 3
+      "id": 3,
+      "nombre": "Alejandro",
+      "apellidos": "Rivera",
+      "fecha_nacimiento": "2021-05-06T23:43:00",
+      "rut": "11111111-1",
+      "direccion": "Calle falsa 111",
+      "telefono": "+569 12345679",
+      "email": "al.riveraq@duocuc.cl",
+      "turno": "1",
+      "img": "https://media.solotodo.com/media/products/MSI_N210-MD1G-D3.jpg"
     }
   ],
   "empleados": [

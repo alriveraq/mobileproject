@@ -1,13 +1,55 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>empleados-agregar</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Editar empleado</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">empleados-agregar</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+<ion-content padding>
+  <form [formGroup]="empleadoform"  (ngSubmit)="onFormSubmit(empleadoform.value)">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input type="text" [(ngModel)]="empleado.nombre" formControlName="empleado_nombre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Apellidos</ion-label>
+      <ion-input type="text" [(ngModel)]="empleado.apellidos" formControlName="empleado_apellidos"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Fecha de nacimiento</ion-label>
+      <ion-input type="text" [(ngModel)]="empleado.fecha_nacimiento" formControlName="empleado_fecha_nacimiento"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Rut</ion-label>
+      <ion-input type="text" [(ngModel)]="empleado.rut" formControlName="empleado_rut"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Direccion</ion-label>
+      <ion-input type="text" [(ngModel)]="empleado.direccion" formControlName="empleado_direccion"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Telefono</ion-label>
+      <ion-input type="text" [(ngModel)]="empleado.telefono" formControlName="empleado_telefono"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="text" [(ngModel)]="empleado.email" formControlName="empleado_email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Turno</ion-label>
+      <ion-input type="text" [(ngModel)]="empleado.turno" formControlName="empleado_turno"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Imagen</ion-label>
+      <ion-input type="text" [(ngModel)]="empleado.img" formControlName="empleado_img"></ion-input>
+    </ion-item>
+    <ion-button type="submit" shape="round" color="primary" expand="block" [disabled]="!empleadoform.valid">Submit</ion-button>
+  </form>
 </ion-content>

@@ -54,7 +54,7 @@ export class CategoriaAgregarPage implements OnInit {
           }
           // Si viene respuesta
           console.log("Next Agrego SIIIIII Router saltaré ;",this.router);
-          this.router.navigate(['/product-list']);
+          this.router.navigate(['/categoria']);
         }
         , complete: () => { }
         , error: (err) => {
@@ -62,6 +62,5 @@ export class CategoriaAgregarPage implements OnInit {
           loading.dismiss(); //Elimina la espera
         }
       });
-    console.log("Observe que todo lo del suscribe sale después de este mensaje")
   }
 }
