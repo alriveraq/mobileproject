@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Locales</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let local of locales" lines="full">
+      <ion-label id="img_locales">
+        <img [src]="local.img" alt="Imagen del local">
+      </ion-label>
+      <ion-card-header>
+        <ion-card-title>{{ local.nombre }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-card-title>Turno del local: {{ local.direccion }}</ion-card-title>
+        <ion-card-content>Comuna: {{ local.comuna }}</ion-card-content>
+        <ion-card-content>Rut : {{ local.region }}</ion-card-content>
+        <ion-card-content>Direccion: {{ local.telefono }}</ion-card-content>
+        <ion-card-content>Telefono: {{ local.telefono }}</ion-card-content>
+        <ion-button (click)="editarlocal(local.id)">Editar</ion-button>
+        <ion-button type="button" shape="round" color="danger" expand="block" (click)="eliminar(local.id)">Eliminar</ion-button>
+      </ion-card-content>
+    </ion-item>
+  </ion-list>
+</ion-content>

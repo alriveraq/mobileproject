@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Producto } from './interface-admin/producto';
 import { Empleados } from './interface-admin/empleados';
+import { Local } from './interface-admin/local';
 
 const baseUrl = "http://localhost:3000";
 const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
@@ -152,7 +153,49 @@ export class ServicioAdminService {
       catchError(this.handleError<Empleados>('agregarempleado'))
     );
   }
+  //LOCALES
+  getlocales(): Observable<Local[]> {
+    console.log("getlocales ()");
+    return this.http.get<Local[]>(baseUrl+"/locales")
+      .pipe(
+        tap(heroes => console.log('fetched products')),
+        catchError(this.handleError('getlocales', []))
+      );
+  }
 
+  getlocal(id: String): Observable<Local> {
+    console.log("getlocales ID:" + id);
+    const apiUrl = `${baseUrl}/locales`;
+    return this.http.get<Local>(apiUrl + "/" + id)
+      .pipe(
+        tap(_ => console.log('fetched local id=${id}')),
+        catchError(this.handleError<Local>('getlocal id=${id}'))
+      );
+  }
+
+  actualizarlocal(id: String, local: Local): Observable<Local> {
+    return this.http.put<Local>(baseUrl + "/locales/" + id, local, httpOptions)
+    .pipe(
+      tap(_ => console.log('actualizado local id=${id}')),
+      catchError(this.handleError<any>('actualizarlocal'))
+    );
+  }
+
+  eliminarlocal(id: String): Observable<Local> {
+    return this.http.delete<Local>(baseUrl + "/locales/" + id, httpOptions)
+    .pipe(
+      tap(_ => console.log('eliminado Local id=${id}')),
+      catchError(this.handleError<any>('eliminarlocal'))
+    );
+  }
+
+  agregarlocal(local: Local): Observable<Local> {
+    return this.http.post<Local>(baseUrl + "/locales", local, httpOptions)
+    .pipe(
+      tap((newempleado: Local) => console.log('agregado Local w/ id=${newempleado.id}')),
+      catchError(this.handleError<Local>('agregarlocal'))
+    );
+  }
 
 }
 

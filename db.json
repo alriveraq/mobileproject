@@ -75,5 +75,16 @@
       "turno": "1",
       "img": "https://media.solotodo.com/media/products/MSI_N210-MD1G-D3.jpg"
     }
+  ],
+  "locales": [
+    {
+      "id": 2,
+      "nombre": "Local 2",
+      "direccion": "Calle falsa 123",
+      "comuna": "Santiago",
+      "region": "Metropolitana",
+      "telefono": "+569 12345678",
+      "img": "https://media.solotodo.com/media/products/MSI_N210-MD1G-D3.jpg"
+    }
   ]
 }

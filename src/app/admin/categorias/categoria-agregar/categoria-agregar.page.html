@@ -3,11 +3,10 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title> Nueva categoria </ion-title>
+    <ion-title>Nueva categoria</ion-title>
     <ion-buttons slot="end">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-
   </ion-toolbar>
 </ion-header>
 
@@ -15,7 +14,8 @@
   <form [formGroup]="categoriaform" (ngSubmit)="onFormSubmit(categoriaform.value)">
     <ion-item>
       <ion-label position="floating">Nombre</ion-label>
-      <ion-input type="text" [(ngModel)]="categoria.nombre" formControlName="categoria.nombre"></ion-input>
+      <ion-input type="text" [(ngModel)]="categoria.nombre" formControlName="categoria_nombre"></ion-input>
+      <!-- Cambiado "categoria.nombre" a "categoria_nombre" -->
     </ion-item>
     <ion-button type="submit" shape="round" color="primary" expand="block"
       [disabled]="!categoriaform.valid">Submit</ion-button>

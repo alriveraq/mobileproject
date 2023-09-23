@@ -24,10 +24,6 @@ const routes: Routes = [
     loadChildren: () => import('./admin/bodegas/bodegas.module').then( m => m.BodegasPageModule)
   },
   {
-    path: 'locales',
-    loadChildren: () => import('./admin/locales/locales.module').then( m => m.LocalesPageModule)
-  },
-  {
     path: 'rol',
     loadChildren: () => import('./admin/rol/rol.module').then( m => m.RolPageModule)
   },
@@ -90,6 +86,18 @@ const routes: Routes = [
   {
     path: 'empleados-agregar',
     loadChildren: () => import('./admin/empleados/empleados-agregar/empleados-agregar.module').then( m => m.EmpleadosAgregarPageModule)
+  },
+  {
+    path: 'locales',
+    loadChildren: () => import('./admin/locales/locales/locales.module').then( m => m.LocalesPageModule)
+  },
+  {
+    path: 'locales-editar/:id',
+    loadChildren: () => import('./admin/locales/locales-editar/locales-editar.module').then( m => m.LocalesEditarPageModule)
+  },
+  {
+    path: 'locales-agregar',
+    loadChildren: () => import('./admin/locales/locales-agregar/locales-agregar.module').then( m => m.LocalesAgregarPageModule)
   }
 ];
 
