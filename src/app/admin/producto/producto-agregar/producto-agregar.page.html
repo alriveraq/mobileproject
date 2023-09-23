@@ -1,0 +1,99 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Agregar producto</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="productoform" (ngSubmit)="onFormSubmit(productoform.value)">
+    <ion-item>
+      <ion-label>Tipo de Producto</ion-label>
+      <ion-select formControlName="tipo_producto" required>
+        <ion-select-option value="GPU">GPU</ion-select-option>
+        <ion-select-option value="RAM">RAM</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="productoform.value.tipo_producto === 'GPU'">
+      <ion-label>Nombre</ion-label>
+      <ion-input formControlName="nombre" required></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="productoform.value.tipo_producto === 'GPU'">
+      <ion-label>GPU</ion-label>
+      <ion-input formControlName="gpu" required></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="productoform.value.tipo_producto === 'GPU'">
+      <ion-label>Memoria</ion-label>
+      <ion-input formControlName="memoria" required></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="productoform.value.tipo_producto === 'GPU'">
+      <ion-label>Frecuencia</ion-label>
+      <ion-input formControlName="frecuencia" required></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="productoform.value.tipo_producto === 'GPU'">
+      <ion-label>bus</ion-label>
+      <ion-input formControlName="bus" required></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="productoform.value.tipo_producto === 'GPU'">
+      <ion-label>Precio</ion-label>
+      <ion-input formControlName="precio"  type= number required></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="productoform.value.tipo_producto === 'GPU'">
+      <ion-label>Imagen</ion-label>
+      <ion-input formControlName="img" required></ion-input>
+    </ion-item>
+
+
+    <ion-item *ngIf="productoform.value.tipo_producto === 'RAM'">
+      <ion-label>Capacidad</ion-label>
+      <ion-input formControlName="capacidad" required></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="productoform.value.tipo_producto === 'RAM'">
+      <ion-label>Tipo</ion-label>
+      <ion-input formControlName="tipo" required></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="productoform.value.tipo_producto === 'RAM'">
+      <ion-label>Frecuencia</ion-label>
+      <ion-input formControlName="frecuencia" required></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="productoform.value.tipo_producto === 'RAM'">
+      <ion-label>Formato</ion-label>
+      <ion-input formControlName="formato" required></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="productoform.value.tipo_producto === 'RAM'">
+      <ion-label>Voltaje</ion-label>
+      <ion-input formControlName="voltaje" required></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="productoform.value.tipo_producto === 'RAM'">
+      <ion-label>Precio</ion-label>
+      <ion-input formControlName="precio" type=number required></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="productoform.value.tipo_producto === 'RAM'">
+      <ion-label>Imagen</ion-label>
+      <ion-input formControlName="img"  required></ion-input>
+    </ion-item>
+
+
+    <ion-button type="submit" shape="round" color="primary" expand="block"
+      [disabled]="!productoform.valid">Submit</ion-button>
+  </form>
+</ion-content>

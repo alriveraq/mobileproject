@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Categorias</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let categoria of categorias" lines="full">
+      <ion-label>
+        <p>Categoria {{ categoria.nombre }}</p>
+        <ion-button (click)="editarCategoria(categoria.id)">Editar</ion-button>
+        <ion-button type="button" shape="round" color="danger" expand="block" (click)="eliminar(categoria.id)">Eliminar</ion-button>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
