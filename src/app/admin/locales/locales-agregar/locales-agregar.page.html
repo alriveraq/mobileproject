@@ -1,13 +1,44 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>locales-agregar</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Agregar local</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">locales-agregar</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+<ion-content padding>
+  <form [formGroup]="localform"  (ngSubmit)="onFormSubmit(localform.value)">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input type="text" [(ngModel)]="local.nombre" formControlName="local_nombre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Direccion</ion-label>
+      <ion-input type="text" [(ngModel)]="local.direccion" formControlName="local_direccion"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Comuna</ion-label>
+      <ion-input type="text" [(ngModel)]="local.comuna" formControlName="local_comuna"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Region</ion-label>
+      <ion-input type="text" [(ngModel)]="local.region" formControlName="local_region"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Telefono</ion-label>
+      <ion-input type="text" [(ngModel)]="local.telefono" formControlName="local_telefono"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Imagen</ion-label>
+      <ion-input type="text" [(ngModel)]="local.img" formControlName="local_img"></ion-input>
+    </ion-item>
+    <ion-button type="submit" shape="round" color="primary" expand="block" [disabled]="!localform.valid">Submit</ion-button>
+  </form>
 </ion-content>
+

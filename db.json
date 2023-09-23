@@ -7,6 +7,14 @@
     {
       "id": 3,
       "nombre": "Categoría 3"
+    },
+    {
+      "id": 4,
+      "nombre": "Electro"
+    },
+    {
+      "id": 5,
+      "nombre": "sdfsdfdsfdsfsdsf"
     }
   ],
   "productos": [
@@ -85,6 +93,24 @@
       "region": "Metropolitana",
       "telefono": "+569 12345678",
       "img": "https://media.solotodo.com/media/products/MSI_N210-MD1G-D3.jpg"
+    },
+    {
+      "id": 3,
+      "nombre": "asdas",
+      "direccion": "dasdas",
+      "comuna": "dasdas",
+      "region": "asdsa",
+      "telefono": "asdsa",
+      "img": "asdsa"
+    },
+    {
+      "id": 4,
+      "nombre": "asdsad",
+      "direccion": "asdsa",
+      "comuna": "dasdsad",
+      "region": "asdsad",
+      "telefono": "asdsa",
+      "img": "dasdsa"
     }
   ]
 }

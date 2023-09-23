@@ -1,6 +1,5 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -10,6 +9,13 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+<ion-fab>
+  <!-- Agrega un enlace a una página específica usando routerLink -->
+  <ion-fab-button routerLink="/categoria-agregar">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let categoria of categorias" lines="full">
