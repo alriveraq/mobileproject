@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { BodegasPageRoutingModule } from './bodegas-routing.module';
+import { BodegaPageRoutingModule } from './bodega-routing.module';
 
-import { BodegasPage } from './bodegas.page';
+import { BodegaPage } from './bodega.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    BodegasPageRoutingModule
+    BodegaPageRoutingModule
   ],
-  declarations: [BodegasPage]
+  declarations: [BodegaPage]
 })
-export class BodegasPageModule {}
+export class BodegaPageModule {}

@@ -16,14 +16,6 @@ const routes: Routes = [
     loadChildren: () => import('./admin/categorias/categoria/categoria.module').then( m => m.CategoriaPageModule)
   },
   {
-    path: 'provedores',
-    loadChildren: () => import('./admin/provedores/provedores.module').then( m => m.ProvedoresPageModule)
-  },
-  {
-    path: 'bodegas',
-    loadChildren: () => import('./admin/bodegas/bodegas.module').then( m => m.BodegasPageModule)
-  },
-  {
     path: 'rol',
     loadChildren: () => import('./admin/rol/rol.module').then( m => m.RolPageModule)
   },
@@ -98,7 +90,32 @@ const routes: Routes = [
   {
     path: 'locales-agregar',
     loadChildren: () => import('./admin/locales/locales-agregar/locales-agregar.module').then( m => m.LocalesAgregarPageModule)
+  },
+  {
+    path: 'bodega',
+    loadChildren: () => import('./admin/bodega/bodega/bodega.module').then( m => m.BodegaPageModule)
+  },
+  {
+    path: 'bodega-agregar',
+    loadChildren: () => import('./admin/bodega/bodega-agregar/bodega-agregar.module').then( m => m.BodegaAgregarPageModule)
+  },
+  {
+    path: 'bodega-editar/:id',
+    loadChildren: () => import('./admin/bodega/bodega-editar/bodega-editar.module').then( m => m.BodegaEditarPageModule)
+  },
+  {
+    path: 'provedores',
+    loadChildren: () => import('./admin/provedores/provedores/provedores.module').then( m => m.ProvedoresPageModule)
+  },
+  {
+    path: 'provedores-agregar',
+    loadChildren: () => import('./admin/provedores/provedores-agregar/provedores-agregar.module').then( m => m.ProvedoresAgregarPageModule)
+  },
+  {
+    path: 'provedores-editar/:id',
+    loadChildren: () => import('./admin/provedores/provedores-editar/provedores-editar.module').then( m => m.ProvedoresEditarPageModule)
   }
+
 ];
 
 @NgModule({

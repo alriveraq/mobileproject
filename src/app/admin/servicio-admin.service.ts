@@ -6,6 +6,8 @@ import { catchError, tap } from 'rxjs/operators';
 import { Producto } from './interface-admin/producto';
 import { Empleados } from './interface-admin/empleados';
 import { Local } from './interface-admin/local';
+import {Proveedores} from './interface-admin/provedores';
+
 
 const baseUrl = "http://localhost:3000";
 const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
@@ -194,6 +196,95 @@ export class ServicioAdminService {
     .pipe(
       tap((newempleado: Local) => console.log('agregado Local w/ id=${newempleado.id}')),
       catchError(this.handleError<Local>('agregarlocal'))
+    );
+  }
+
+
+  //BODEGA
+  getbodegas(): Observable<Local[]> {
+    console.log("getbodegas ()");
+    return this.http.get<Local[]>(baseUrl+"/bodegas")
+      .pipe(
+        tap(heroes => console.log('fetched products')),
+        catchError(this.handleError('getlocales', []))
+      );
+  }
+
+  getbodega(id: String): Observable<Local> {
+    console.log("getlocales ID:" + id);
+    const apiUrl = `${baseUrl}/bodegas`;
+    return this.http.get<Local>(apiUrl + "/" + id)
+      .pipe(
+        tap(_ => console.log('fetched bodega id=${id}')),
+        catchError(this.handleError<Local>('getlocal id=${id}'))
+      );
+  }
+
+  actualizarbodega(id: String, local: Local): Observable<Local> {
+    return this.http.put<Local>(baseUrl + "/bodegas/" + id, local, httpOptions)
+    .pipe(
+      tap(_ => console.log('actualizado bodega id=${id}')),
+      catchError(this.handleError<any>('actualizarbodega'))
+    );
+  }
+
+  eliminarbodega(id: String): Observable<Local> {
+    return this.http.delete<Local>(baseUrl + "/bodegas/" + id, httpOptions)
+    .pipe(
+      tap(_ => console.log('eliminado bodega id=${id}')),
+      catchError(this.handleError<any>('eliminarbodega'))
+    );
+  }
+
+  agregarbodega(local: Local): Observable<Local> {
+    return this.http.post<Local>(baseUrl + "/bodegas", local, httpOptions)
+    .pipe(
+      tap((newempleado: Local) => console.log('agregado bodega w/ id=${newempleado.id}')),
+      catchError(this.handleError<Local>('agregarbodega'))
+    );
+  }
+
+  // PROVEEDORES
+  getproveedores(): Observable<Proveedores[]> {
+    console.log("getproveedores ()");
+    return this.http.get<Proveedores[]>(baseUrl+"/proveedores")
+      .pipe(
+        tap(heroes => console.log('fetched products')),
+        catchError(this.handleError('getproveedores', []))
+      );
+  }
+
+  getproveedor(id: String): Observable<Proveedores> {
+    console.log("getproveedores ID:" + id);
+    const apiUrl = `${baseUrl}/proveedores`;
+    return this.http.get<Proveedores>(apiUrl + "/" + id)
+      .pipe(
+        tap(_ => console.log('fetched local id=${id}')),
+        catchError(this.handleError<Proveedores>('getproveedores id=${id}'))
+      );
+  }
+
+  actualizarproveedor(id: String, proveedor: Proveedores): Observable<Proveedores> {
+    return this.http.put<Proveedores>(baseUrl + "/proveedores/" + id, proveedor, httpOptions)
+    .pipe(
+      tap(_ => console.log('actualizado proveedor id=${id}')),
+      catchError(this.handleError<any>('actualizarproveedor'))
+    );
+  }
+
+  eliminarproveedor(id: String): Observable<Proveedores> {
+    return this.http.delete<Proveedores>(baseUrl + "/proveedores/" + id, httpOptions)
+    .pipe(
+      tap(_ => console.log('eliminado Local id=${id}')),
+      catchError(this.handleError<any>('eliminarlocal'))
+    );
+  }
+
+  agregarproveedor(proveedor: Proveedores): Observable<Proveedores> {
+    return this.http.post<Proveedores>(baseUrl + "/proveedores", proveedor, httpOptions)
+    .pipe(
+      tap((newprovedor: Proveedores) => console.log('agregado Local w/ id=${newempleado.id}')),
+      catchError(this.handleError<Proveedores>('agregarlocal'))
     );
   }
 

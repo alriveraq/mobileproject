@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Bodegas</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let bodega of bodegas" lines="full">
+      <ion-label id="img_bodegas">
+        <img [src]="bodega.img" alt="Imagen de la bodega">
+      </ion-label>
+      <ion-card-header>
+        <ion-card-title>{{ bodega.nombre }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-card-content>Comuna: {{ bodega.comuna }}</ion-card-content>
+        <ion-card-content>Region : {{ bodega.region }}</ion-card-content>
+        <ion-card-content>Direccion: {{ bodega.telefono }}</ion-card-content>
+        <ion-card-content>Telefono: {{ bodega.telefono }}</ion-card-content>
+        <ion-button (click)="editarbodega(bodega.id)">Editar</ion-button>
+        <ion-button type="button" shape="round" color="danger" expand="block" (click)="eliminar(bodega.id)">Eliminar</ion-button>
+      </ion-card-content>
+    </ion-item>
+  </ion-list>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button routerLink="/bodega-agregar">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

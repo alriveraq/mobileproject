@@ -116,6 +116,87 @@
       "region": "jhjg",
       "telefono": "4344",
       "img": "hj"
+    },
+    {
+      "id": 6,
+      "nombre": "asdsda",
+      "direccion": "asdsad",
+      "comuna": "sadasd",
+      "region": "sad",
+      "telefono": "sda",
+      "img": "adssda"
+    }
+  ],
+  "bodegas": [
+    {
+      "id": 1,
+      "nombre": "",
+      "direccion": "",
+      "comuna": "",
+      "region": "",
+      "telefono": "",
+      "img": ""
+    },
+    {
+      "id": 2,
+      "nombre": "hola",
+      "direccion": "dsadas",
+      "comuna": "dsasda",
+      "region": "d0osaifj9a-iu0opdsfjhaspudifhiuapsdhfpiuasdfhdsa",
+      "telefono": "adsasd",
+      "img": "asdsda"
+    },
+    {
+      "id": 3,
+      "nombre": "asdsda",
+      "direccion": "asdsad",
+      "comuna": "asdsad",
+      "region": "sadsad",
+      "telefono": "asdsad",
+      "img": "asdsad"
+    },
+    {
+      "id": 4,
+      "nombre": "asdsda",
+      "direccion": "asdasd",
+      "comuna": "asdads",
+      "region": "sdadsa",
+      "telefono": "dassda",
+      "img": "saddsa"
+    }
+  ],
+  "proveedores": [
+    {
+      "id": 1,
+      "nombre": "asdas",
+      "rut_empresa": "a",
+      "direccion": "a",
+      "telefono": "a",
+      "email": "a"
+    },
+    {
+      "id": 2,
+      "nombre": "asdas",
+      "rut_empresa": "a",
+      "direccion": "a",
+      "telefono": "a",
+      "email": "a"
+    },
+    {
+      "id": 3,
+      "nombre": "asdas",
+      "rut_empresa": "a",
+      "direccion": "a",
+      "telefono": "a",
+      "email": "a"
+    },
+    {
+      "id": 4,
+      "nombre": "asdas",
+      "rut_empresa": "a",
+      "direccion": "a",
+      "telefono": "a",
+      "email": "a"
     }
   ]
 }
