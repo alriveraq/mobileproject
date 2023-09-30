@@ -78,7 +78,7 @@ export class ProductoAgregarPage implements OnInit {
           }
           // Si viene respuesta
           console.log("Next Agrego SIIIIII Router saltaré ;",this.router);
-          this.router.navigate(['/product-list']);
+          this.router.navigate(['/producto']);
         }
         , complete: () => { }
         , error: (err) => {

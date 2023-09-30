@@ -22,7 +22,7 @@
       <ion-card-content>
         <ion-card-title>Turno del local: {{ local.direccion }}</ion-card-title>
         <ion-card-content>Comuna: {{ local.comuna }}</ion-card-content>
-        <ion-card-content>Rut : {{ local.region }}</ion-card-content>
+        <ion-card-content>Region : {{ local.region }}</ion-card-content>
         <ion-card-content>Direccion: {{ local.telefono }}</ion-card-content>
         <ion-card-content>Telefono: {{ local.telefono }}</ion-card-content>
         <ion-button (click)="editarlocal(local.id)">Editar</ion-button>
@@ -30,8 +30,7 @@
       </ion-card-content>
     </ion-item>
   </ion-list>
-  <ion-fab>
-    <!-- Agrega un enlace a una página específica usando routerLink -->
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button routerLink="/locales-agregar">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

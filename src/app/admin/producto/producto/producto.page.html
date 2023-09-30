@@ -17,6 +17,10 @@
     <ion-select [(ngModel)]="tipoProductoSeleccionado" (ionChange)="filtrarProductos()">
       <ion-select-option value="GPU">GPU</ion-select-option>
       <ion-select-option value="RAM">RAM</ion-select-option>
+      <ion-select-option value="RAM">Placa Madre</ion-select-option>
+      <ion-select-option value="RAM">Disco Duro</ion-select-option>
+      <ion-select-option value="RAM">Tarjeta Grafica</ion-select-option>
+      <ion-select-option value="RAM">Gabinete</ion-select-option>
     </ion-select>
   </ion-item>
 
@@ -45,9 +49,22 @@
         <ion-card-content>Formato: {{ producto.formato }}</ion-card-content>
         <ion-card-content>Voltaje: {{ producto.voltaje }}</ion-card-content>
       </ng-container>
+
+      <ng-container *ngIf="producto.tipo_producto === 'Placa Madre'">
+        <ion-card-content>Capacidad: {{ producto.capacidad }}</ion-card-content>
+        <ion-card-content>Tipo: {{ producto.tipo }}</ion-card-content>
+        <ion-card-content>Formato: {{ producto.formato }}</ion-card-content>
+        <ion-card-content>Voltaje: {{ producto.voltaje }}</ion-card-content>
+      </ng-container>
   
       <ion-button (click)="editarProductos(producto.id)">Editar</ion-button>
         <ion-button type="button" shape="round" color="danger" expand="block" (click)="eliminar(producto.id)">Eliminar</ion-button>
     </ion-card-content>
   </ion-card>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button routerLink="/producto-agregar">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   

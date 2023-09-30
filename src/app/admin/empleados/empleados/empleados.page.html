@@ -23,15 +23,13 @@
 
   <ion-list *ngIf="!filtrohorario || filtrohorario === ''">
     <ion-item *ngFor="let empleado of empleados" lines="full">
-      <ion-label id="img_empleado">
-        <img [src]="empleado.img" alt="Imagen del empleado">
-      </ion-label>
+        <img id="img_empleado" [src]="empleado.img" alt="Imagen del empleado">
       <ion-card-header>
         <ion-card-title>{{ empleado.nombre }} {{empleado.apellidos}}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <ion-card-title>Turno del empleado: {{ empleado.turno }}</ion-card-title>
-        <ion-card-content>Fecha de fecha_nacimiento: {{ empleado.fecha_nacimiento }}</ion-card-content>
+        <ion-card-content>Fecha de nacimiento:{{ empleado.fecha_nacimiento }}</ion-card-content>
         <ion-card-content>Rut : {{ empleado.rut }}</ion-card-content>
         <ion-card-content>Direccion: {{ empleado.direccion }}</ion-card-content>
         <ion-card-content>Telefono: {{ empleado.telefono }}</ion-card-content>
@@ -59,7 +57,25 @@
         <ion-card-content>Email: {{ empleado.email }}</ion-card-content>
         <ion-button (click)="editarEmpleados(empleado.id)">Editar</ion-button>
         <ion-button type="button" shape="round" color="danger" expand="block" (click)="eliminar(empleado.id)">Eliminar</ion-button>
+        <ion-fab>
+          <ion-fab-button color="medium" size="small">
+            <ion-icon name="caret-forward-outline"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-list side="end">
+            <ion-fab-button color="warning" (click)="editarEmpleados(empleado.id)" >
+              <ion-icon name="create-outline"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-button color="danger" (click)="eliminar(empleado.id)">
+              <ion-icon name="trash-outline" ></ion-icon>
+            </ion-fab-button>
+          </ion-fab-list>
+        </ion-fab>
       </ion-card-content>
     </ion-item>
   </ion-list>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button routerLink="/empleados-agregar">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

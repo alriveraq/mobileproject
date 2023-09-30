@@ -9,21 +9,35 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-fab>
-  <!-- Agrega un enlace a una página específica usando routerLink -->
-  <ion-fab-button routerLink="/categoria-agregar">
-    <ion-icon name="add"></ion-icon>
-  </ion-fab-button>
-</ion-fab>
+
 
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let categoria of categorias" lines="full">
       <ion-label>
-        <p>Categoria {{ categoria.nombre }}</p>
-        <ion-button (click)="editarCategoria(categoria.id)">Editar</ion-button>
-        <ion-button type="button" shape="round" color="danger" expand="block" (click)="eliminar(categoria.id)">Eliminar</ion-button>
+        <ion-title>{{ categoria.nombre }}</ion-title >
+          <ion-fab>
+            <ion-fab-button color="medium" size="small">
+              <ion-icon name="caret-forward-outline"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-list side="end">
+              <ion-fab-button color="warning" (click)="editarCategoria(categoria.id)"  >
+                <ion-icon name="create-outline"></ion-icon>
+              </ion-fab-button>
+              <ion-fab-button color="danger" (click)="eliminar(categoria.id)">
+                <ion-icon name="trash-outline" ></ion-icon>
+              </ion-fab-button>
+            </ion-fab-list>
+          </ion-fab>
+          <br>  
+          <br>
+          <br>
       </ion-label>
     </ion-item>
   </ion-list>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button routerLink="/categoria-agregar">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

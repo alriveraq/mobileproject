@@ -1,20 +1,16 @@
 {
   "categorias": [
     {
-      "id": 1,
-      "nombre": "Categoría 3"
-    },
-    {
       "id": 3,
       "nombre": "Categoría 3"
     },
     {
       "id": 4,
-      "nombre": "Electro"
+      "nombre": "Electros"
     },
     {
-      "id": 5,
-      "nombre": "sdfsdfdsfdsfsdsf"
+      "id": 6,
+      "nombre": "hola"
     }
   ],
   "productos": [
@@ -37,13 +33,13 @@
       "id": 2,
       "nombre": "Alejandro",
       "apellidos": "Rivera",
-      "fecha_nacimiento": "2021-05-27T23:47:00",
+      "fecha_nacimiento": "2001/10/03",
       "rut": "11111111-1",
       "direccion": "Calle falsa 111",
       "telefono": "+569 12345679",
       "email": "al.riveraq@duocuc.cl",
       "turno": "2",
-      "img": "https://media.solotodo.com/media/products/MSI_N210-MD1G-D3.jpg"
+      "img": "https://img.freepik.com/foto-gratis/retrato-joven-trabajador-casco-gran-planta-metalurgica_146671-19570.jpg?w=2000"
     },
     {
       "id": 3,
@@ -56,32 +52,32 @@
       "email": "al.riveraq@duocuc.cl",
       "turno": "1",
       "img": "https://media.solotodo.com/media/products/MSI_N210-MD1G-D3.jpg"
+    },
+    {
+      "id": 4,
+      "nombre": "wefewf",
+      "apellidos": "jbhbhj",
+      "fecha_nacimiento": "jbhjhjbh",
+      "rut": "jbhbhj",
+      "direccion": "bhjjbh",
+      "telefono": "jbhjbh",
+      "email": "bhjjbhjbh",
+      "turno": "bhjjbhjbh",
+      "img": "bhjjhbbhj"
     }
   ],
   "empleados": [
     {
-      "id": 2,
-      "nombre": "Alejandro",
-      "apellidos": "Rivera",
-      "fecha_nacimiento": "2001/10/03",
-      "rut": "11111111-1",
-      "direccion": "Calle falsa 111",
-      "telefono": "+569 12345679",
-      "email": "al.riveraq@duocuc.cl",
-      "turno": "2",
-      "img": "https://media.solotodo.com/media/products/MSI_N210-MD1G-D3.jpg"
-    },
-    {
-      "id": 3,
-      "nombre": "Alejandro",
-      "apellidos": "Rivera",
-      "fecha_nacimiento": "2001/10/03",
-      "rut": "11111111-1",
-      "direccion": "Calle falsa 111",
-      "telefono": "+569 12345679",
-      "email": "al.riveraq@duocuc.cl",
-      "turno": "1",
-      "img": "https://media.solotodo.com/media/products/MSI_N210-MD1G-D3.jpg"
+      "id": 5,
+      "nombre": "sdvvsdsdvvds",
+      "apellidos": "kjiuhu",
+      "fecha_nacimiento": "ihhihi",
+      "rut": "ihu",
+      "direccion": "sdv",
+      "telefono": "svd",
+      "email": "vsdv",
+      "turno": "dvsdv",
+      "img": "https://img.freepik.com/foto-gratis/retrato-joven-trabajador-casco-gran-planta-metalurgica_146671-19570.jpg?w=2000"
     }
   ],
   "locales": [
@@ -111,6 +107,15 @@
       "region": "asdsad",
       "telefono": "asdsa",
       "img": "dasdsa"
+    },
+    {
+      "id": 5,
+      "nombre": "353gt1º",
+      "direccion": "hghjg",
+      "comuna": "ghgj",
+      "region": "jhjg",
+      "telefono": "4344",
+      "img": "hj"
     }
   ]
 }

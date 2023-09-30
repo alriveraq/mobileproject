@@ -26,7 +26,7 @@ export class ProductoPage implements OnInit {
     capacidad: '',
     tipo: '',
     formato: '',
-    voltaje: ''
+    voltaje: '',
   };
   constructor(
     private navCtrl: NavController,
