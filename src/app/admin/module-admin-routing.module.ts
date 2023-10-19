@@ -37,7 +37,7 @@ const routes: Routes = [
         component: BodegaAgregarPage
       },
       {
-        path: 'bodega-editar',
+        path: 'bodega-editar/:id',
         component: BodegaEditarPage
       },
       {
@@ -49,7 +49,7 @@ const routes: Routes = [
         component: CategoriaAgregarPage
       },
       {
-        path: 'categoria-editar',
+        path: 'categoria-editar/:id',
         component: CategoriaEditarPage
       },
       {
@@ -61,7 +61,7 @@ const routes: Routes = [
         component: EmpleadosAgregarPage
       },
       {
-        path: 'empleados-editar',
+        path: 'empleados-editar/:id',
         component: EmpleadosEditarPage
       },
       {
@@ -73,7 +73,7 @@ const routes: Routes = [
         component: LocalesAgregarPage
       },
       {
-        path: 'locales-editar',
+        path: 'locales-editar/:id',
         component: LocalesEditarPage
       },
       {
@@ -85,7 +85,7 @@ const routes: Routes = [
         component: ProductoAgregarPage
       },
       {
-        path: 'producto-editar',
+        path: 'producto-editar/:id',
         component: ProductoEditarPage
       },
       {
@@ -97,7 +97,7 @@ const routes: Routes = [
         component: ProvedoresAgregarPage
       },
       {
-        path: 'provedores-editar',
+        path: 'provedores-editar/:id',
         component: ProvedoresEditarPage
       },
       {

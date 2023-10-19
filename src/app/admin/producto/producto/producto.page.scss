@@ -1,0 +1,36 @@
+.producto-carta{
+    height: 720px;
+    width: 400px;
+    background: #7590d6;
+    background: linear-gradient(90deg, #7590d6 0%, #4d71d7 100% );
+    box-shadow: 0px 1px 10px rgba(98, 140, 255, 0.5);
+    border-radius: 50px 50px 50px 50px;
+
+}
+
+
+.contenido{
+    color: white;
+    text-align: center;
+}
+        
+
+
+
+.precio{
+    color: white;
+    text-align: right;
+}
+
+.nombre-producto{
+    color: white;
+    text-align: center;
+
+    
+}
+
+.producto-carta{
+    justify-content: space-evenly;
+    text-align: center;
+    
+}

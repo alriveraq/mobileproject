@@ -1,70 +1,68 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-content class="body">
+  <ion-header [translucent]="true">
+    <ion-toolbar>
 
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Productos</ion-title>
-    <ion-buttons slot="end">
-      <ion-back-button defaultHref="/"></ion-back-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Productos</ion-title>
+      <ion-buttons slot="end">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 
-<ion-content>
-  <ion-item>
-    <ion-label>Tipo de Producto</ion-label>
-    <ion-select [(ngModel)]="tipoProductoSeleccionado" (ionChange)="filtrarProductos()">
-      <ion-select-option value="GPU">GPU</ion-select-option>
-      <ion-select-option value="RAM">RAM</ion-select-option>
-      <ion-select-option value="RAM">Placa Madre</ion-select-option>
-      <ion-select-option value="RAM">Disco Duro</ion-select-option>
-      <ion-select-option value="RAM">Tarjeta Grafica</ion-select-option>
-      <ion-select-option value="RAM">Gabinete</ion-select-option>
-    </ion-select>
-  </ion-item>
-
-  <ion-card *ngFor="let producto of productosFiltrados">
-    <img [src]="producto.img" alt="Imagen del Producto">
-    <ion-card-header>
-      <ion-card-title>{{ producto.nombre }}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-card-title>Precio: {{ producto.precio }}</ion-card-title>
+  <ion-content>
+    <ion-item>
+      <ion-label>Tipo de Producto</ion-label>
+      <ion-select [(ngModel)]="tipoProductoSeleccionado" (ionChange)="filtrarProductos()">
+        <ion-select-option value="GPU">GPU</ion-select-option>
+        <ion-select-option value="RAM">RAM</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-grid [fixed]="true">
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col><ion-card class="producto-carta" *ngFor="let producto of productosFiltrados">
+          <img [src]="producto.img" alt="Imagen del Producto">
+          <ion-card-header>
+            <ion-card-title class="nombre-producto" >{{ producto.nombre }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            
+            
+            <!-- Agregar condicionales para características específicas -->
+        
+            <!-- Si el tipo de producto es "GPU", mostrar detalles de GPU -->
+            <ng-container  *ngIf="producto.tipo_producto === 'GPU'">
+              <ion-card-content class="contenido">-GPU: {{ producto.gpu }}</ion-card-content>
+              <ion-card-content class="contenido">-Memoria: {{ producto.memoria }}</ion-card-content>
+              <ion-card-content class="contenido">-Frecuencia: {{ producto.frecuencia }}</ion-card-content>
+              <ion-card-content class="contenido">-Bus: {{ producto.bus }}</ion-card-content>
+            </ng-container>
+        
+            <!-- Si el tipo de producto es "RAM", mostrar detalles de RAM -->
+            <ng-container *ngIf="producto.tipo_producto === 'RAM'">
+              <ion-card-content class="contenido">-Capacidad: {{ producto.capacidad }}</ion-card-content>
+              <ion-card-content class="contenido">-Tipo: {{ producto.tipo }}</ion-card-content>
+              <ion-card-content class="contenido">-Formato: {{ producto.formato }}</ion-card-content>
+              <ion-card-content class="contenido">-Voltaje: {{ producto.voltaje }}</ion-card-content>
+            </ng-container>
+        
+            <ion-card-title class="precio">Precio: {{ producto.precio }}</ion-card-title>
+            <br>
+            <ion-button  type="button" shape="round" color="dark" expand="block" (click)="editarProductos(producto.id)">Editar</ion-button>
+              <ion-button  type="button" shape="round" color="danger" expand="block" (click)="eliminar(producto.id)">Eliminar</ion-button>
+          </ion-card-content>
+        </ion-card>
       
-      <!-- Agregar condicionales para características específicas -->
-  
-      <!-- Si el tipo de producto es "GPU", mostrar detalles de GPU -->
-      <ng-container *ngIf="producto.tipo_producto === 'GPU'">
-        <ion-card-content>GPU: {{ producto.gpu }}</ion-card-content>
-        <ion-card-content>Memoria: {{ producto.memoria }}</ion-card-content>
-        <ion-card-content>Frecuencia: {{ producto.frecuencia }}</ion-card-content>
-        <ion-card-content>Bus: {{ producto.bus }}</ion-card-content>
-      </ng-container>
-  
-      <!-- Si el tipo de producto es "RAM", mostrar detalles de RAM -->
-      <ng-container *ngIf="producto.tipo_producto === 'RAM'">
-        <ion-card-content>Capacidad: {{ producto.capacidad }}</ion-card-content>
-        <ion-card-content>Tipo: {{ producto.tipo }}</ion-card-content>
-        <ion-card-content>Formato: {{ producto.formato }}</ion-card-content>
-        <ion-card-content>Voltaje: {{ producto.voltaje }}</ion-card-content>
-      </ng-container>
-
-      <ng-container *ngIf="producto.tipo_producto === 'Placa Madre'">
-        <ion-card-content>Capacidad: {{ producto.capacidad }}</ion-card-content>
-        <ion-card-content>Tipo: {{ producto.tipo }}</ion-card-content>
-        <ion-card-content>Formato: {{ producto.formato }}</ion-card-content>
-        <ion-card-content>Voltaje: {{ producto.voltaje }}</ion-card-content>
-      </ng-container>
-  
-      <ion-button (click)="editarProductos(producto.id)">Editar</ion-button>
-        <ion-button type="button" shape="round" color="danger" expand="block" (click)="eliminar(producto.id)">Eliminar</ion-button>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button routerLink="/producto-agregar">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+        <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+          <ion-fab-button routerLink="/admin/producto-agregar">
+            <ion-icon name="add"></ion-icon>
+          </ion-fab-button>
+        </ion-fab></ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-content> 
   

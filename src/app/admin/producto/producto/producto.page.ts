@@ -45,7 +45,7 @@ export class ProductoPage implements OnInit {
     console.log("Entrando :getProducts");
     // Crea un Wait (Esperar)
     const loading = await this.loadingController.create({
-      message: 'Harrys Loading...'
+      message: 'Cargando... '
     });
     // Muestra el Wait
     await loading.present();
@@ -72,7 +72,7 @@ export class ProductoPage implements OnInit {
   editarProductos(productoId: string) {
     // Redirige a la página "categoria-editar" con el ID de la categoría como parámetro
     console.log("editarProducto **************** ID:" + productoId);
-    this.navCtrl.navigateForward(`/producto-editar/${productoId}`);
+    this.navCtrl.navigateForward(`admin/producto-editar/${productoId}`);
   }
 
   async getproducto() {
