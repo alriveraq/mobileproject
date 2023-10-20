@@ -3,7 +3,7 @@
   import { ActivatedRoute, Router } from '@angular/router';
   import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
   import { Local } from '../../interface-admin/local';
-  import { ServicioAdminService } from '../../servicio-admin.service';
+  import { ServicioAdminService } from '../../servicio/servicio-admin.service';
 
   @Component({
     selector: 'app-locales-editar',

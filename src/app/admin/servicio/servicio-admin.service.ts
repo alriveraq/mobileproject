@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Categoria } from './interface-admin/categoria';
+import { Categoria } from '../interface-admin/categoria';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { Producto } from './interface-admin/producto';
-import { Empleados } from './interface-admin/empleados';
-import { Local } from './interface-admin/local';
-import {Proveedores} from './interface-admin/provedores';
+import { Producto } from '../interface-admin/producto';
+import { Empleados } from '../interface-admin/empleados';
+import { Local } from '../interface-admin/local';
+import {Proveedores} from '../interface-admin/provedores';
 
 
 const baseUrl = "http://localhost:3000";

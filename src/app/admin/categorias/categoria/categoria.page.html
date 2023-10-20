@@ -16,6 +16,7 @@
     <ion-item *ngFor="let categoria of categorias" lines="full">
       <ion-label>
         <ion-title>{{ categoria.nombre }}</ion-title >
+          <ion-title>{{ categoria.id }}</ion-title >
           <ion-fab>
             <ion-fab-button color="medium" size="small">
               <ion-icon name="caret-forward-outline"></ion-icon>
@@ -24,9 +25,9 @@
               <ion-fab-button color="warning" (click)="editarCategoria(categoria.id)"  >
                 <ion-icon name="create-outline"></ion-icon>
               </ion-fab-button>
-              <ion-fab-button color="danger" (click)="eliminar(categoria.id)">
+              <!ion-fab-button color="danger" (click)="eliminar(categoria.id)">
                 <ion-icon name="trash-outline" ></ion-icon>
-              </ion-fab-button>
+              <!/ion-fab-button>
             </ion-fab-list>
           </ion-fab>
           <br>  

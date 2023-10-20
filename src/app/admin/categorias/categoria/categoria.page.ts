@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Categoria } from '../../interface-admin/categoria';
 import { LoadingController, AlertController, NavController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ServicioAdminService } from '../../servicio-admin.service';
+import { ServicioAdminService } from '../../servicio/servicio-admin.service';
 import { Observable } from 'rxjs';
+import { FirebaseService } from '../../servicio/firebase.service';
 
 
 
@@ -22,6 +23,7 @@ export class CategoriaPage implements OnInit {
   constructor(
     private navCtrl: NavController,
     private restApi: ServicioAdminService,
+    private firestore:FirebaseService,
     private loadingController: LoadingController,
     public route: ActivatedRoute,
     public router: Router,
@@ -29,42 +31,23 @@ export class CategoriaPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getcategorias();
+    this.getcagorias();
   }
 
-  async getcategorias() {
-    console.log("Entrando :getcategorias");
-    // Crea un Wait (Esperar)
-    const loading = await this.loadingController.create({
-      message: 'Harrys Loading...'
+  async getcagorias(){
+    this.firestore.getCategories().subscribe((data) => {
+      console.log(data);
+      this.categorias = data;
     });
-    // Muestra el Wait
-    await loading.present();
-    console.log("Entrando :");
-    // Obtiene el Observable del servicio
-    await this.restApi.getcategorias()
-      .subscribe({
-        next: (res) => { 
-          console.log("Res:" + res);
-  // Si funciona asigno el resultado al arreglo productos
-          this.categorias = res;
-          console.log("thisProductos:",this.categorias);
-          loading.dismiss();
-        }
-        , complete: () => { }
-        , error: (err) => {
-  // Si da error, imprimo en consola.
-          console.log("Err:" + err);
-          loading.dismiss();
-        }
-      })
+  
   }
 
-  editarCategoria(categoriaId: string) {
+  editarCategoria(id: string | undefined | null) {
     // Redirige a la página "categoria-editar" con el ID de la categoría como parámetro
-    console.log("editarCategoria **************** ID:" + categoriaId);
-    this.navCtrl.navigateForward(`/categoria-editar/${categoriaId}`);
+    console.log("editarCategoria **************** ID:" + id);
+    this.navCtrl.navigateForward(`admin/categoria-editar/${id}`);
   }
+
 
 
   async getcategoria() {
@@ -99,7 +82,7 @@ export class CategoriaPage implements OnInit {
           console.log("Data *****************");
           console.log(res);
           loading.dismiss();
-          this.getcategorias();
+          this.getcagorias();
         },
         complete: () => { },
         error: (err) => {

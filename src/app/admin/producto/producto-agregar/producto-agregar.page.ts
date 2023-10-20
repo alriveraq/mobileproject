@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ServicioAdminService } from '../../servicio-admin.service';
+import { ServicioAdminService } from '../../servicio/servicio-admin.service';
 import { Router } from '@angular/router';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';

@@ -3,7 +3,8 @@ import { LoadingController, AlertController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Categoria } from '../../interface-admin/categoria';
-import { ServicioAdminService } from '../../servicio-admin.service';
+import { ServicioAdminService } from '../../servicio/servicio-admin.service';
+import { FirebaseService } from '../../servicio/firebase.service';
 
 @Component({
   selector: 'app-categoria-editar',
@@ -22,6 +23,7 @@ export class CategoriaEditarPage implements OnInit {
 
   constructor(
     public restApi: ServicioAdminService,
+    public firestore: FirebaseService,
     public loadingController: LoadingController,
     public alertController: AlertController,
     public route: ActivatedRoute,
@@ -45,19 +47,15 @@ export class CategoriaEditarPage implements OnInit {
   async onformSubmit(form: NgForm) {
     console.log("onformSubmit ID " + this.id);
     this.categoria.id = this.id;
-    await this.restApi.actualizarcategoria(this.id, this.categoria)
-    .subscribe({
-      next: data => {
-        console.log("actualizarcategoria OK");
-        console.log(data);
-        this.presentAlertConfirm("Actualizado correctamente");
-    }
-    , complete: () => {}
-    , error: (err) => {
+    try {
+      const data = await this.firestore.updatecagoria(this.id, this.categoria);
+      console.log("actualizarcategoria OK");
+      console.log(data);
+      this.presentAlertConfirm("Actualizado correctamente");
+    } catch (err) {
       console.log("actualizarcategoria ERROR");
       console.log(err);
     }
-    })
   }
 
   async actualizarcategoria(id: string) {
@@ -65,17 +63,19 @@ export class CategoriaEditarPage implements OnInit {
       message: 'Cargando...'
     });
     await loading.present();
-    await this.restApi.getcategoria(id + "")
+    await this.firestore.getcategoria(id + "")
     .subscribe({
-      next: data => {
-        console.log("getcategoria OK");
-        console.log(data);
-        this.id = data.id;
-        this.categoriaForm.setValue({
-          categoria_nombre: data.nombre
-        });
-        loading.dismiss();
-    }
+        next: data => {
+          console.log("getcategoria OK" + id);
+          console.log(data);
+          if (data) {
+            this.id = data.id;
+            this.categoriaForm.setValue({
+              categoria_nombre: data.nombre
+            });
+          }
+          loading.dismiss();
+      }
     , complete: () => {}
     , error: (err) => {
       console.log("getcategoria ERROR");

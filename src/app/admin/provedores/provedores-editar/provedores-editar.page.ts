@@ -3,7 +3,7 @@ import { LoadingController, AlertController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Proveedores } from '../../interface-admin/provedores';
-import { ServicioAdminService } from '../../servicio-admin.service';
+import { ServicioAdminService } from '../../servicio/servicio-admin.service';
 
 @Component({
   selector: 'app-provedores-editar',

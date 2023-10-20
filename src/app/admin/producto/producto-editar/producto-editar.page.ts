@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-import { ServicioAdminService } from '../../servicio-admin.service';
+import { ServicioAdminService } from '../../servicio/servicio-admin.service';
 import { Producto } from '../../interface-admin/producto';
 @Component({
   selector: 'app-producto-editar',

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Proveedores } from '../../interface-admin/provedores';
 import { LoadingController, AlertController, NavController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ServicioAdminService } from '../../servicio-admin.service';
+import { ServicioAdminService } from '../../servicio/servicio-admin.service';
 import { Observable } from 'rxjs';
 
 @Component({

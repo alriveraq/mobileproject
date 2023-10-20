@@ -3,7 +3,7 @@ import { LoadingController, AlertController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Bodega } from '../../interface-admin/bodega';
-import { ServicioAdminService } from '../../servicio-admin.service';
+import { ServicioAdminService } from '../../servicio/servicio-admin.service';
 @Component({
   selector: 'app-bodega-editar',
   templateUrl: './bodega-editar.page.html',

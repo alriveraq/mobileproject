@@ -49,7 +49,7 @@ const routes: Routes = [
         component: CategoriaAgregarPage
       },
       {
-        path: 'categoria-editar',
+        path: 'categoria-editar/:id',
         component: CategoriaEditarPage
       },
       {
