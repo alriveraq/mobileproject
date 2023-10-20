@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Registro</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="usuarioform" (ngSubmit)="onFormSubmit(usuarioform.value)">
+    <ion-item>
+      <ion-label position="floating">Nombre de Usuario</ion-label>
+      <ion-input type="text" [(ngModel)]="usuario.nombre_usuario" formControlName="nombre_usuario"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="text" [(ngModel)]="usuario.email" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input type="text" [(ngModel)]="usuario.contrasena" formControlName="contrasena"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Imagen</ion-label>
+      <ion-input type="text" [(ngModel)]="usuario.img" formControlName="img"></ion-input>
+    </ion-item>
+    <ion-button type="submit" shape="round" color="primary" expand="block"
+      [disabled]="!usuarioform.valid">Submit</ion-button>
+  </form>
+</ion-content>
