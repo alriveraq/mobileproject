@@ -6,6 +6,7 @@ import { LoginPage } from '../login/login.page';
 import { RegistroPage } from '../registro/registro.page';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     UserRoutingModule,
     IonicModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ComponentsModule
   ]
 })
 export class UserModule { }

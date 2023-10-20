@@ -1,15 +1,4 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Agregar Proveedor</ion-title>
-    <ion-buttons slot="end">
-      <ion-back-button defaultHref="/"></ion-back-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<app-header titulo="Agregar Proveedor"></app-header>
 
 <ion-content padding>
   <form [formGroup]="proveedorForm" (ngSubmit)="onFormSubmit(proveedorForm.value)">

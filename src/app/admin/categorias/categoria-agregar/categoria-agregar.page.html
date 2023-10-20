@@ -1,14 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Nueva categoria</ion-title>
-    <ion-buttons slot="end">
-      <ion-back-button defaultHref="/"></ion-back-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<app-header titulo="Agregar Categoria"></app-header>
 
 <ion-content padding>
   <form [formGroup]="categoriaform" (ngSubmit)="onFormSubmit(categoriaform.value)">

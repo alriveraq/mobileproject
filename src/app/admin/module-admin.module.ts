@@ -24,6 +24,7 @@ import { ProvedoresEditarPage } from './provedores/provedores-editar/provedores-
 import { SubcategoriaPage } from './subcategorias/subcategoria/subcategoria.page';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { ComponentsModule } from '../components/components.module';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { IonicModule } from '@ionic/angular';
     ModuleAdminRoutingModule,
     ReactiveFormsModule,
     IonicModule,
-    FormsModule
+    FormsModule,
+    ComponentsModule
   ]
 })
 export class ModuleAdminModule { }
