@@ -61,7 +61,7 @@ export class RegistroPage implements OnInit {
           }
           // Si viene respuesta
           console.log("Next Agrego SIIIIII Router saltaré ;",this.router);
-          this.router.navigate(['userio/login']);
+          this.router.navigate(['usuario/login']);
         }
         , complete: () => { }
         , error: (err) => {
