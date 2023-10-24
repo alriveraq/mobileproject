@@ -3,7 +3,6 @@ import { LoadingController, AlertController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Categoria } from '../../interface-admin/categoria';
-import { ServicioAdminService } from '../../servicio/servicio-admin.service';
 import { FirebaseService } from '../../servicio/firebase.service';
 
 @Component({
@@ -22,40 +21,39 @@ export class CategoriaEditarPage implements OnInit {
   id: any = '';
 
   constructor(
-    public restApi: ServicioAdminService,
     public firestore: FirebaseService,
     public loadingController: LoadingController,
     public alertController: AlertController,
     public route: ActivatedRoute,
     public router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private aRoute: ActivatedRoute,
+    
   ) {}
 
   ngOnInit() {
     console.log("ngOnInit ID:" + this.route.snapshot.params['id']);
-
     this.actualizarcategoria(this.route.snapshot.params['id']);
 
     this.categoriaForm = this.formBuilder.group({
       categoria_nombre: [null, Validators.required]
     });
-     
   }
 
-
-
   async onformSubmit(form: NgForm) {
-    console.log("onformSubmit ID " + this.id);
-    this.categoria.id = this.id;
-    try {
-      const data = await this.firestore.updatecagoria(this.id, this.categoria);
-      console.log("actualizarcategoria OK");
-      console.log(data);
-      this.presentAlertConfirm("Actualizado correctamente");
-    } catch (err) {
-      console.log("actualizarcategoria ERROR");
-      console.log(err);
-    }
+    const loading = await this.loadingController.create({
+      message: 'Actualizando...',
+    });
+    await loading.present();
+    this.id = this.route.snapshot.params['id']
+    await this.firestore.actualizarCategoria(this.id, form)
+      .then(() => {
+        loading.dismiss();
+        this.router.navigate(['/admin/categoria/']);
+      }, (error) => {
+        console.log(error);
+        loading.dismiss();
+      });
   }
 
   async actualizarcategoria(id: string) {
@@ -65,17 +63,15 @@ export class CategoriaEditarPage implements OnInit {
     await loading.present();
     await this.firestore.getcategoria(id + "")
     .subscribe({
-        next: data => {
-          console.log("getcategoria OK" + id);
-          console.log(data);
-          if (data) {
-            this.id = data.id;
-            this.categoriaForm.setValue({
-              categoria_nombre: data.nombre
-            });
-          }
-          loading.dismiss();
-      }
+      next: data => {
+        console.log("getcategoria OK");
+        console.log(data);
+        this.id = data.id;
+        this.categoriaForm.patchValue({
+          categoria_nombre: data.nombre
+        });
+        loading.dismiss();
+    }
     , complete: () => {}
     , error: (err) => {
       console.log("getcategoria ERROR");
@@ -94,7 +90,7 @@ export class CategoriaEditarPage implements OnInit {
         {
           text: 'Okay',
           handler: () => {
-            this.router.navigate(['/categoria/']);
+            this.router.navigate(['/admin/categoria/']);
           }
         }
       ]

@@ -1,23 +1,21 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Editar categoria</ion-title>
+    <ion-title>Categorias</ion-title>
     <ion-buttons slot="end">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content padding>
-  <form [formGroup]="categoriaForm"  (ngSubmit)="onformSubmit(categoriaForm.value)">
+  <form [formGroup]="categoriaForm" (ngSubmit)="onformSubmit(categoriaForm.value)">
     <ion-item>
-      <ion-label position="floating">Nombre del Producto</ion-label>
-      <ion-input type="text" [(ngModel)]="categoria.nombre" formControlName="categoria_nombre"></ion-input>
+      <ion-label position="floating">Nombre de la Categoría</ion-label>
+      <ion-input type="text" formControlName="categoria_nombre"></ion-input>
     </ion-item>
-    <ion-button type="submit" shape="round" color="primary" expand="block" [disabled]="!categoriaForm.valid">Submit</ion-button>
+    <ion-button type="submit" shape="round" color="primary" expand="block" [disabled]="!categoriaForm.valid">Actualizar</ion-button>
   </form>
 </ion-content>

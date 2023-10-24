@@ -1,23 +1,28 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-back-button defaultHref="/admin/categoria"></ion-back-button>
     </ion-buttons>
-    <ion-title>Nueva categoria</ion-title>
-    <ion-buttons slot="end">
-      <ion-back-button defaultHref="/"></ion-back-button>
-    </ion-buttons>
+    <ion-title>Agregar Categoría</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <form [formGroup]="categoriaform" (ngSubmit)="onFormSubmit(categoriaform.value)">
-    <ion-item>
-      <ion-label position="floating">Nombre</ion-label>
-      <ion-input type="text" [(ngModel)]="categoria.nombre" formControlName="categoria_nombre"></ion-input>
-      <!-- Cambiado "categoria.nombre" a "categoria_nombre" -->
-    </ion-item>
-    <ion-button type="submit" shape="round" color="primary" expand="block"
-      [disabled]="!categoriaform.valid">Submit</ion-button>
-  </form>
+<ion-content>
+  <ion-loading *ngIf="loading" message="Cargando..." duration="0" translucent="true"></ion-loading>
+
+  <ion-card>
+    <ion-card-content>
+      <form [formGroup]="crearCategoriaForm" (ngSubmit)="agregarcategoria()">
+        <ion-list>
+          <ion-item>
+            <ion-label position="floating">Nombre de la Categoría</ion-label>
+            <ion-input formControlName="nombre" type="text"></ion-input>
+          </ion-item>
+        </ion-list>
+        <div class="ion-padding">
+          <ion-button expand="full" type="submit" [disabled]="loading">Agregar Categoría</ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

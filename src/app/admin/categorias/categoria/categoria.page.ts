@@ -3,7 +3,7 @@ import { Categoria } from '../../interface-admin/categoria';
 import { LoadingController, AlertController, NavController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ServicioAdminService } from '../../servicio/servicio-admin.service';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { FirebaseService } from '../../servicio/firebase.service';
 
 
@@ -15,11 +15,11 @@ import { FirebaseService } from '../../servicio/firebase.service';
 })
 export class CategoriaPage implements OnInit {
 
-  categorias?: Categoria[]; // Propiedad para almacenar los datos
+  categorias: Categoria[] = [];
   categoria: Categoria = {
     id: '',
     nombre: ''
-  };
+  }; // Propiedad para almacenar los datos
   constructor(
     private navCtrl: NavController,
     private restApi: ServicioAdminService,
@@ -27,36 +27,50 @@ export class CategoriaPage implements OnInit {
     private loadingController: LoadingController,
     public route: ActivatedRoute,
     public router: Router,
-    public alertController: AlertController
+    public alertController: AlertController,
   ) { }
 
   ngOnInit() {
-    this.getcagorias();
+    this.getcategorias();
+
   }
 
-  async getcagorias(){
-    this.firestore.getCategories().subscribe((data) => {
-      console.log(data);
-      this.categorias = data;
+  getcategorias() {
+    this.firestore.getcategorias().subscribe(data => {
+      this.categorias = [];
+      data.forEach((element: any) => {
+        this.categorias.push({
+          id: element.payload.doc.id,
+          ...element.payload.doc.data()
+        })
+      });
+      console.log(this.categorias);
     });
-  
+
+
+  }
+  eliminarCategoria(id: string) {
+    this.firestore.eliminarCategoria(id).then(() => {
+      console.log('empelado eliminado con exito');
+    }
+    ).catch(error => {
+      console.log(error);
+    });
   }
 
-  editarCategoria(id: string | undefined | null) {
+  editarCategoria(categoriaId: string) {
     // Redirige a la página "categoria-editar" con el ID de la categoría como parámetro
-    console.log("editarCategoria **************** ID:" + id);
-    this.navCtrl.navigateForward(`admin/categoria-editar/${id}`);
+    console.log("editarCategoria **************** ID:" + categoriaId);
+    this.navCtrl.navigateForward(`/admin/categoria-editar/${categoriaId}`);
   }
-
-
 
   async getcategoria() {
-    console.log("getProduct **************** ParamMap ID:" + this.route.snapshot.paramMap.get('id'));
+    console.log("getProduct ParamMap ID:" + this.route.snapshot.paramMap.get('id'));
     // Creamos un Wait
     const loading = await this.loadingController.create({ message: 'Loading...' });
     // Mostramos el Wait
     await loading.present();
-    await this.restApi.getcategoria(this.route.snapshot.paramMap.get('id')!)
+    await this.firestore.getcategoria(this.route.snapshot.paramMap.get('id')!)
       .subscribe({
         next: (res) => {
           console.log("Data *****************");
@@ -72,50 +86,4 @@ export class CategoriaPage implements OnInit {
         }
       })
   }
-
-  async confirmarEliminacion(id: string) {
-    const loading = await this.loadingController.create({ message: 'Loading...' });
-    await loading.present();
-    await this.restApi.eliminarcategoria(id)
-      .subscribe({
-        next: (res) => {
-          console.log("Data *****************");
-          console.log(res);
-          loading.dismiss();
-          this.getcagorias();
-        },
-        complete: () => { },
-        error: (err) => {
-          console.log("Error DetailProduct Página", err);
-          loading.dismiss();
-        }
-      });
-    }
-
-    async eliminarCategoria(id: string) {
-      const alert = await this.alertController.create({
-        header: 'Alerta',
-        message: '¿Está seguro de eliminar la categoría?',
-        buttons: [
-          {
-            text: 'Cancelar',
-            handler: () => {
-              console.log('Confirm Cancel');
-            }
-          },
-          {
-            text: 'Aceptar',
-            handler: () => {
-              console.log('Confirm Ok');
-              this.confirmarEliminacion(id);
-            }
-          }
-        ]
-      });
-      await alert.present();
-    }
-
-    async eliminar(id: string) {
-      this.eliminarCategoria(id);
-    }
 }

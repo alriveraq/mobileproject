@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, DocumentChangeAction, DocumentReference } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable, of } from 'rxjs';
 import { Categoria } from '../interface-admin/categoria';
+import { catchError, map } from 'rxjs/operators';
+import { DocumentSnapshot } from '@angular/fire/compat/firestore';
 
 
 @Injectable({
@@ -10,20 +12,39 @@ import { Categoria } from '../interface-admin/categoria';
 export class FirebaseService {
 
 
-  constructor(private firestore: AngularFirestore) { }
+  constructor(private db: AngularFirestore) {}
 
-  getCategories() {
-    return this.firestore.collection<Categoria>('categorias').valueChanges();
+  getcategorias(): Observable<any> {
+    return this.db.collection<Categoria>('categorias').snapshotChanges();
   }
 
-
-  getcategoria(id: string){
-    return this.firestore.collection<Categoria>('categorias').doc(id).valueChanges();
+  agregarCategoria(categoria: Categoria): Promise<Categoria> {
+    return this.db.collection<Categoria>('categorias').add(categoria);
+  }
+  eliminarCategoria(id: string): Promise<any> {
+    return this.db.collection<Categoria>('categorias').doc(id).delete();
   }
 
-  updatecagoria(id: string, data: Categoria): Promise<void> {
-    return this.firestore.collection<Categoria>('categorias').doc(id).update(data);
+  getcategoria(id: string): Observable<any> {
+    return this.db.collection<Categoria>('categorias').doc(id).snapshotChanges()
+      .pipe(
+        map(changes => {
+          const data = changes.payload.data() as Categoria;
+          const categoryId = changes.payload.id;
+          return { categoryId, ...data };
+        }),
+        catchError(error => {
+          // Manejo de errores aquí
+          console.error('Error al obtener la categoría:', error);
+          return of(null);
+        })
+      );
   }
+
+  actualizarCategoria(id: string, data: any): Promise<any> {
+    return this.db.collection<Categoria>('categorias').doc(id).update(data)
+  }
+
 }
 
 
