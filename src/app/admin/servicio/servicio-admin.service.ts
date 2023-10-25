@@ -6,7 +6,6 @@ import { catchError, tap } from 'rxjs/operators';
 import { Producto } from '../interface-admin/producto';
 import { Empleados } from '../interface-admin/empleados';
 import { Local } from '../interface-admin/local';
-import {Proveedores} from '../interface-admin/provedores';
 
 
 const baseUrl = "http://localhost:3000";
@@ -244,49 +243,6 @@ export class ServicioAdminService {
     );
   }
 
-  // PROVEEDORES
-  getproveedores(): Observable<Proveedores[]> {
-    console.log("getproveedores ()");
-    return this.http.get<Proveedores[]>(baseUrl+"/proveedores")
-      .pipe(
-        tap(heroes => console.log('fetched products')),
-        catchError(this.handleError('getproveedores', []))
-      );
-  }
-
-  getproveedor(id: String): Observable<Proveedores> {
-    console.log("getproveedores ID:" + id);
-    const apiUrl = `${baseUrl}/proveedores`;
-    return this.http.get<Proveedores>(apiUrl + "/" + id)
-      .pipe(
-        tap(_ => console.log('fetched local id=${id}')),
-        catchError(this.handleError<Proveedores>('getproveedores id=${id}'))
-      );
-  }
-
-  actualizarproveedor(id: String, proveedor: Proveedores): Observable<Proveedores> {
-    return this.http.put<Proveedores>(baseUrl + "/proveedores/" + id, proveedor, httpOptions)
-    .pipe(
-      tap(_ => console.log('actualizado proveedor id=${id}')),
-      catchError(this.handleError<any>('actualizarproveedor'))
-    );
-  }
-
-  eliminarproveedor(id: String): Observable<Proveedores> {
-    return this.http.delete<Proveedores>(baseUrl + "/proveedores/" + id, httpOptions)
-    .pipe(
-      tap(_ => console.log('eliminado Local id=${id}')),
-      catchError(this.handleError<any>('eliminarlocal'))
-    );
-  }
-
-  agregarproveedor(proveedor: Proveedores): Observable<Proveedores> {
-    return this.http.post<Proveedores>(baseUrl + "/proveedores", proveedor, httpOptions)
-    .pipe(
-      tap((newprovedor: Proveedores) => console.log('agregado Local w/ id=${newempleado.id}')),
-      catchError(this.handleError<Proveedores>('agregarlocal'))
-    );
-  }
 
 }
 

@@ -64,6 +64,36 @@
       "email": "bhjjbhjbh",
       "turno": "bhjjbhjbh",
       "img": "bhjjhbbhj"
+    },
+    {
+      "nombre": "asd",
+      "tipo_producto": "GPU",
+      "img": "asd",
+      "gpu": "das",
+      "memoria": "asd",
+      "frecuencia": "asd",
+      "bus": "asd",
+      "precio": 12412,
+      "capacidad": null,
+      "tipo": null,
+      "formato": null,
+      "voltaje": null,
+      "id": 5
+    },
+    {
+      "nombre": "adsdas",
+      "tipo_producto": "GPU",
+      "img": "dasads",
+      "gpu": "dassda",
+      "memoria": "sda",
+      "frecuencia": "ads",
+      "bus": "ads",
+      "precio": 321123,
+      "capacidad": null,
+      "tipo": null,
+      "formato": null,
+      "voltaje": null,
+      "id": 6
     }
   ],
   "empleados": [

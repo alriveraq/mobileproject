@@ -4,7 +4,8 @@ import { LoadingController, AlertController, NavController } from '@ionic/angula
 import { ActivatedRoute, Router } from '@angular/router';
 import { ServicioAdminService } from '../../servicio/servicio-admin.service';
 import { Observable, map } from 'rxjs';
-import { FirebaseService } from '../../servicio/firebase.service';
+import { CategoriaServiceService } from '../categoria-service.service';
+
 
 
 
@@ -23,7 +24,7 @@ export class CategoriaPage implements OnInit {
   constructor(
     private navCtrl: NavController,
     private restApi: ServicioAdminService,
-    private firestore:FirebaseService,
+    private firestore:CategoriaServiceService,
     private loadingController: LoadingController,
     public route: ActivatedRoute,
     public router: Router,

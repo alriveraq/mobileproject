@@ -1,15 +1,10 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/admin/categoria"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Agregar Categoría</ion-title>
-  </ion-toolbar>
-</ion-header>
+
+<app-header titulo="Agregar Categoria"></app-header>
+
 
 <ion-content>
   <ion-loading *ngIf="loading" message="Cargando..." duration="0" translucent="true"></ion-loading>
-
+  
   <ion-card>
     <ion-card-content>
       <form [formGroup]="crearCategoriaForm" (ngSubmit)="agregarcategoria()">

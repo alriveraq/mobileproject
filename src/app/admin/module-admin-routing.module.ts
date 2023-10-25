@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BodegaPage } from './bodega/bodega/bodega.page';
-import { BodegaAgregarPage } from './bodega/bodega-agregar/bodega-agregar.page';
-import { BodegaEditarPage } from './bodega/bodega-editar/bodega-editar.page';
 import { CategoriaPage } from './categorias/categoria/categoria.page';
 import { CategoriaAgregarPage } from './categorias/categoria-agregar/categoria-agregar.page';
 import { CategoriaEditarPage } from './categorias/categoria-editar/categoria-editar.page';
@@ -16,9 +13,6 @@ import { PrincipalPage } from './principal/principal.page';
 import { ProductoPage } from './producto/producto/producto.page';
 import { ProductoAgregarPage } from './producto/producto-agregar/producto-agregar.page';
 import { ProductoEditarPage } from './producto/producto-editar/producto-editar.page';
-import { ProvedoresPage } from './provedores/provedores/provedores.page';
-import { ProvedoresAgregarPage } from './provedores/provedores-agregar/provedores-agregar.page';
-import { ProvedoresEditarPage } from './provedores/provedores-editar/provedores-editar.page';
 import { SubcategoriaPage } from './subcategorias/subcategoria/subcategoria.page';
 
 
@@ -28,18 +22,6 @@ const routes: Routes = [
     path: 'principal',
     component: PrincipalPage,
   },
-      {
-        path: 'bodega',
-        component: BodegaPage
-      },
-      {
-        path: 'bodega-agregar',
-        component: BodegaAgregarPage
-      },
-      {
-        path: 'bodega-editar',
-        component: BodegaEditarPage
-      },
       {
         path: 'categoria',
         component: CategoriaPage
@@ -61,7 +43,7 @@ const routes: Routes = [
         component: EmpleadosAgregarPage
       },
       {
-        path: 'empleados-editar',
+        path: 'empleados-editar/:id',
         component: EmpleadosEditarPage
       },
       {
@@ -73,7 +55,7 @@ const routes: Routes = [
         component: LocalesAgregarPage
       },
       {
-        path: 'locales-editar',
+        path: 'locales-editar/:id',
         component: LocalesEditarPage
       },
       {
@@ -85,20 +67,8 @@ const routes: Routes = [
         component: ProductoAgregarPage
       },
       {
-        path: 'producto-editar',
+        path: 'producto-editar/:id',
         component: ProductoEditarPage
-      },
-      {
-        path: 'provedores',
-        component: ProvedoresPage
-      },
-      {
-        path: 'provedores-agregar',
-        component: ProvedoresAgregarPage
-      },
-      {
-        path: 'provedores-editar',
-        component: ProvedoresEditarPage
       },
       {
         path: 'subcategoria',
