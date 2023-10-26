@@ -10,7 +10,7 @@ import { IonicModule } from '@ionic/angular';
   exports: [HeaderComponent],
   imports: [
     CommonModule,
-    IonicModule
+    IonicModule,
   ]
 })
 export class ComponentsModule { }

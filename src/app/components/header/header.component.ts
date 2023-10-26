@@ -1,4 +1,7 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthServiceService } from 'src/app/usuario/auth-service.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-header',
@@ -6,9 +9,26 @@ import { Component, OnInit, Input} from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
+  @Input() titulo: string = 'Nombre página';
 
-  @Input() titulo:string = 'Nombre pagina' 
+  constructor(
+    private auth: AuthServiceService,
+    private router: Router,
+    private toastController: ToastController
+  ) {}
 
-  constructor() { }
+  public toastButtons = [
+    {
+      text: 'Cerrar sesión',
+      role: 'Cerrar sesión',
+      handler: () => {
+        this.logout();
+      },
+    },
+  ];
 
+  logout() {
+    this.auth.logut();
+    this.router.navigate(['/usuario/login']);
+  }
 }

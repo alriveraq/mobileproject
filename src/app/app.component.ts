@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthServiceService } from './usuario/auth-service.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -10,5 +12,14 @@ export class AppComponent {
     { title: 'Login', url: 'usuario/login', icon: 'basket' },
 
   ];
+
+  constructor(private auth: AuthServiceService,
+    private router: Router) {}
+
+  logout() {
+    this.auth.logut();
+    console.log('logout');
+    this.router.navigate(['/usuario/login']);
+  }
 
 }

@@ -45,6 +45,7 @@ export class CategoriaAgregarPage implements OnInit{
     this.loading = true;
     this.firebase.agregarCategoria(empleado).then(() => {
       this.loading = false;
+      console.log(empleado)
       this.router.navigate(['/admin/categoria']);
     })
   }
