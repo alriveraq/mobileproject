@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Producto } from '../../interface-admin/producto';
 import { LoadingController, AlertController, NavController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ServicioAdminService } from '../../servicio/servicio-admin.service';
+import { ProductoServiceService } from '../producto-service.service';
 
 @Component({
   selector: 'app-producto',
@@ -12,7 +12,6 @@ import { ServicioAdminService } from '../../servicio/servicio-admin.service';
 export class ProductoPage implements OnInit {
   tipoProductoSeleccionado: string = '';
   productos!: Producto[];
-  productosFiltrados: Producto[] = [];
   producto: Producto = {
     id: '',
     nombre: '',
@@ -27,10 +26,11 @@ export class ProductoPage implements OnInit {
     tipo: '',
     formato: '',
     voltaje: '',
+    stock: 0,
   };
   constructor(
     private navCtrl: NavController,
-    private restApi: ServicioAdminService,
+    private firestore: ProductoServiceService,
     private loadingController: LoadingController,
     public route: ActivatedRoute,
     public router: Router,
@@ -41,32 +41,19 @@ export class ProductoPage implements OnInit {
     this.getproductos();
   }
 
-  async getproductos() {
-    console.log("Entrando :getProducts");
-    // Crea un Wait (Esperar)
-    const loading = await this.loadingController.create({
-      message: 'Cargando... '
+  getproductos() {
+    this.firestore.getproductos().subscribe(data => {
+      this.productos = [];
+      data.forEach((element: any) => {
+        this.productos.push({
+          id: element.payload.doc.id,
+          ...element.payload.doc.data()
+        })
+      });
+      console.log(this.productos);
     });
-    // Muestra el Wait
-    await loading.present();
-    console.log("Entrando :");
-    // Obtiene el Observable del servicio
-    await this.restApi.getproductos()
-      .subscribe({
-        next: (res) => { 
-          console.log("Res:" + res);
-  // Si funciona asigno el resultado al arreglo productos
-          this.productos = res;
-          console.log("thisProductos:",this.productos);
-          loading.dismiss();
-        }
-        , complete: () => { }
-        , error: (err) => {
-  // Si da error, imprimo en consola.
-          console.log("Err:" + err);
-          loading.dismiss();
-        }
-      })
+
+
   }
 
   editarProductos(productoId: string) {
@@ -76,12 +63,12 @@ export class ProductoPage implements OnInit {
   }
 
   async getproducto() {
-    console.log("getProduct **************** ParamMap ID:" + this.route.snapshot.paramMap.get('id'));
+    console.log("getProduct ParamMap ID:" + this.route.snapshot.paramMap.get('id'));
     // Creamos un Wait
     const loading = await this.loadingController.create({ message: 'Loading...' });
     // Mostramos el Wait
     await loading.present();
-    await this.restApi.getproducto(this.route.snapshot.paramMap.get('id')!)
+    await this.firestore.getproducto(this.route.snapshot.paramMap.get('id')!)
       .subscribe({
         next: (res) => {
           console.log("Data *****************");
@@ -99,67 +86,14 @@ export class ProductoPage implements OnInit {
   }
 
 
-  async confirmarEliminacion(id: string) {
-    const loading = await this.loadingController.create({ message: 'Loading...' });
-    await loading.present();
-    await this.restApi.eliminarproducto(id)
-      .subscribe({
-        next: (res) => {
-          console.log("Data *****************");
-          console.log(res);
-          loading.dismiss();
-          this.getproductos();
-        },
-        complete: () => { },
-        error: (err) => {
-          console.log("Error DetailProduct Página", err);
-          loading.dismiss();
-        }
-      });
+  eliminarproducto(id: string) {
+    this.firestore.eliminarProducto(id).then(() => {
+      console.log('empelado eliminado con exito');
     }
-
-
-    async eliminarProducto(id: string) {
-      const alert = await this.alertController.create({
-        header: 'Alerta',
-        message: '¿Está seguro de eliminar la categoría?',
-        buttons: [
-          {
-            text: 'Cancelar',
-            handler: () => {
-              console.log('Confirm Cancel');
-            }
-          },
-          {
-            text: 'Aceptar',
-            handler: () => {
-              console.log('Confirm Ok');
-              this.confirmarEliminacion(id);
-            }
-          }
-        ]
-      });
-      await alert.present();
-    }
-
-    async eliminar(id: string) {
-      this.eliminarProducto(id);
-    }
-
-
-  filtrarProductos() {
-    if (!this.tipoProductoSeleccionado || this.tipoProductoSeleccionado === '') {
-      // Si no se selecciona ningún tipo o se selecciona "Todos", mostrar todos los productos.
-      this.productosFiltrados = this.productos;
-    } else {
-      // Filtrar productos basados en el tipo de producto seleccionado.
-      this.productosFiltrados = this.productos.filter(
-        (producto) => producto.tipo_producto === this.tipoProductoSeleccionado
-      );
-    }
+    ).catch(error => {
+      console.log(error);
+    });
   }
-  
-
   
 
   

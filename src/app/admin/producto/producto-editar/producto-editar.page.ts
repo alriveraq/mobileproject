@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ServicioAdminService } from '../../servicio/servicio-admin.service';
 import { Producto } from '../../interface-admin/producto';
+import { ProductoServiceService } from '../producto-service.service';
 @Component({
   selector: 'app-producto-editar',
   templateUrl: './producto-editar.page.html',
@@ -11,6 +12,8 @@ import { Producto } from '../../interface-admin/producto';
 })
 export class ProductoEditarPage implements OnInit {
   productoForm!: FormGroup;
+  public imgcargando = false;
+  public img64 = '';
   producto: Producto = {
     id: '',
     nombre: '',
@@ -24,13 +27,14 @@ export class ProductoEditarPage implements OnInit {
     capacidad: '',
     tipo: '',
     formato: '',
-    voltaje: ''
+    voltaje: '',
+    stock: 1,
   };
   tipoProductoSeleccionado: string = '';
   id: any = '';
 
   constructor(
-    public restApi: ServicioAdminService,
+    public firestore: ProductoServiceService,
     public loadingController: LoadingController,
     public alertController: AlertController,
     public route: ActivatedRoute,
@@ -44,39 +48,35 @@ export class ProductoEditarPage implements OnInit {
     this.actualizarproducto(this.route.snapshot.params['id']);
 
     this.productoForm = this.formBuilder.group({
-      'nombre': [null],
-      'img': [null],
-      'gpu': [null],
-      'memoria': [null],
-      'frecuencia': [null],
-      'bus': [null],
-      'precio': [null],
-      'capacidad': [null], // Elimin si está presente
-      'tipo': [null],
-      'formato': [null],
-      'voltaje': [null],
-      'tipo_producto': [this.tipoProductoSeleccionado]
+      nombre: [null, Validators.required],
+      tipo_producto: [null, Validators.required],
+      gpu: [null],
+      memoria: [null],
+      frecuencia: [null, Validators.required],
+      bus: [null],
+      precio: [null, Validators.required],
+      capacidad: [null],
+      tipo: [null],
+      formato: [null],
+      voltaje: [null]
     });
   }
 
-  async onformSubmit() {
-    console.log("onformSubmit ID " + this.id);
-    const formData = this.productoForm.value; // Obtén el valor del formulario
-    formData.id = this.id;
-    formData.tipo_producto = this.tipoProductoSeleccionado;
-  
-    await this.restApi.actualizarproducto(this.id, formData)
-      .subscribe({
-        next: data => {
-          console.log("actualizarcategoria OK");
-          console.log(data);
-          this.presentAlertConfirm("Actualizado correctamente");
-        },
-        complete: () => {},
-        error: (err) => {
-          console.log("actualizarcategoria ERROR");
-          console.log(err);
-        }
+
+
+  async onformSubmit(form: NgForm) {
+    const loading = await this.loadingController.create({
+      message: 'Actualizando...',
+    });
+    await loading.present();
+    this.id = this.route.snapshot.params['id']
+    await this.firestore.actualizarProducto(this.id, form)
+      .then(() => {
+        loading.dismiss();
+        this.router.navigate(['/admin/producto/']);
+      }, (error) => {
+        console.log(error);
+        loading.dismiss();
       });
   }
 
@@ -85,7 +85,7 @@ export class ProductoEditarPage implements OnInit {
       message: 'Cargando...'
     });
     await loading.present();
-    await this.restApi.getproducto(id + "")
+    await this.firestore.getproducto(id + "")
     .subscribe({
       next: data => {
         console.log('Tipo de Producto seleccionado:'+ data.tipo_producto);
@@ -96,7 +96,6 @@ export class ProductoEditarPage implements OnInit {
         this.productoForm.patchValue({
           nombre: data.nombre,
           tipo_producto: data.tipo_producto,
-          img: data.img,
           gpu: data.gpu,
           memoria: data.memoria,
           frecuencia: data.frecuencia,
@@ -126,7 +125,7 @@ export class ProductoEditarPage implements OnInit {
         {
           text: 'Okay',
           handler: () => {
-            this.router.navigate(['/producto/']);
+            this.router.navigate(['/admin/producto/']);
           }
         }
       ]

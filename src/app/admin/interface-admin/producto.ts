@@ -12,6 +12,7 @@ export class Producto {
     tipo?: string;
     formato?: string;
     voltaje?: string;
+    stock: number;
 
     constructor(obj:any)
     {
@@ -28,5 +29,6 @@ export class Producto {
         this.tipo = obj && obj.tipo || null;
         this.formato = obj && obj.formato || null;
         this.voltaje = obj && obj.voltaje || null;
+        this.stock = obj && obj.stock || null;
     }
 }

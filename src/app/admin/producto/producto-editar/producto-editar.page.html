@@ -1,7 +1,7 @@
 <app-header titulo="Editar Producto"></app-header>
 
 <ion-content>
-  <form [formGroup]="productoForm" (ngSubmit)="onformSubmit()">
+  <form [formGroup]="productoForm" (ngSubmit)="onformSubmit(productoForm.value)">
 
     <ion-item *ngIf="productoForm.value.tipo_producto === 'GPU'">
       <ion-label>Nombre</ion-label>
@@ -33,11 +33,6 @@
       <ion-input formControlName="precio"  type= number required></ion-input>
     </ion-item>
 
-    <ion-item *ngIf="productoForm.value.tipo_producto === 'GPU'">
-      <ion-label>Imagen</ion-label>
-      <ion-input formControlName="img" required></ion-input>
-    </ion-item>
-
 
     <ion-item *ngIf="productoForm.value.tipo_producto === 'RAM'">
       <ion-label>Capacidad</ion-label>
@@ -67,11 +62,6 @@
     <ion-item *ngIf="productoForm.value.tipo_producto === 'RAM'">
       <ion-label>Precio</ion-label>
       <ion-input formControlName="precio" type=number required></ion-input>
-    </ion-item>
-
-    <ion-item *ngIf="productoForm.value.tipo_producto === 'RAM'">
-      <ion-label>Imagen</ion-label>
-      <ion-input formControlName="img"  required></ion-input>
     </ion-item>
 
 

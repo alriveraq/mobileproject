@@ -1,16 +1,12 @@
 <app-header titulo="Agregar producto"></app-header>
 
 <ion-content>
-  <form [formGroup]="productoform" (ngSubmit)="onFormSubmit(productoform.value)">
+  <form [formGroup]="productoform" (ngSubmit)="agregarproducto()">
     <ion-item>
       <ion-label>Tipo de Producto</ion-label>
       <ion-select formControlName="tipo_producto" required>
         <ion-select-option value="GPU">GPU</ion-select-option>
         <ion-select-option value="RAM">RAM</ion-select-option>
-        <ion-select-option value="RAM">Placa Madre</ion-select-option>
-        <ion-select-option value="RAM">Disco Duro</ion-select-option>
-        <ion-select-option value="RAM">Tarjeta Grafica</ion-select-option>
-        <ion-select-option value="RAM">Gabinete</ion-select-option>
       </ion-select>
     </ion-item>
 
@@ -46,8 +42,14 @@
 
     <ion-item *ngIf="productoform.value.tipo_producto === 'GPU'">
       <ion-label>Imagen</ion-label>
-      <ion-input formControlName="img" required></ion-input>
+      <ion-input [disabled]="imgcargando" (change)="cfoto($event)" type="file" formControlName="img"></ion-input>
     </ion-item>
+
+    <ion-item *ngIf="productoform.value.tipo_producto === 'GPU'">
+      <ion-label>stock</ion-label>
+      <ion-input formControlName="stock"  type= number required></ion-input>
+    </ion-item>
+    
 
 
     <ion-item *ngIf="productoform.value.tipo_producto === 'RAM'">
@@ -82,7 +84,12 @@
 
     <ion-item *ngIf="productoform.value.tipo_producto === 'RAM'">
       <ion-label>Imagen</ion-label>
-      <ion-input formControlName="img"  required></ion-input>
+      <ion-input [disabled]="imgcargando" (change)="cfoto($event)" type="file" formControlName="img"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="productoform.value.tipo_producto === 'RAM'">
+      <ion-label>stock</ion-label>
+      <ion-input formControlName="stock"  type= number required></ion-input>
     </ion-item>
 
 
