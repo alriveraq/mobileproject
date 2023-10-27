@@ -1,8 +1,10 @@
-export class subcategoria
+import { Categoria } from "./categoria";
+
+export class Subcategoria
 {
     id: string;
     nombre: string;
-    categoria: string;
+    categoria: Categoria;
 
     
     constructor(obj: any) {

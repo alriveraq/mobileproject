@@ -16,6 +16,13 @@
     </ion-item>
 
     <ion-item *ngIf="productoform.value.tipo_producto === 'GPU'">
+      <ion-label>Subcategoria</ion-label>
+      <ion-select formControlName="subcategoria" required>
+        <ion-select-option value="{{subcategoria.id}}" *ngFor="let subcategoria of subcategorias">{{subcategoria.nombre}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="productoform.value.tipo_producto === 'GPU'">
       <ion-label>GPU</ion-label>
       <ion-input formControlName="gpu" required></ion-input>
     </ion-item>

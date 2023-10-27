@@ -1,6 +1,7 @@
 <app-header titulo="Producto"></app-header>
+
 <ion-content>
-  <ion-card class="producto-carta" *ngFor="let producto of productos">
+  <ion-card class="producto-carta">
     <img [src]="producto.img" alt="Imagen del Producto">
     <ion-card-header>
       <ion-card-title class="nombre-producto">{{ producto.nombre }}</ion-card-title>
@@ -22,15 +23,22 @@
 
       <ion-card-title class="precio">Precio: {{ producto.precio }}</ion-card-title>
       <ion-card-title class="precio">Stock: {{ producto.stock }}</ion-card-title>
-      <br>
-      <ion-button type="button" shape="round" color="dark" expand="block" (click)="editarProductos(producto.id)">Editar</ion-button>
-      <ion-button type="button" shape="round" color="danger" expand="block" (click)="eliminarproducto(producto.id)">Eliminar</ion-button>
     </ion-card-content>
   </ion-card>
-  
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button routerLink="/admin/producto-agregar">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+
+  <ion-card>
+    <form  [formGroup]="comentarioform" (ngSubmit)="agregarcomentario()">
+      <ion-item>
+        <ion-label>Comentario</ion-label>
+        <ion-input formControlName="comentario" required></ion-input>
+      </ion-item>
+      <ion-button type="submit" shape="round" color="primary" expand="block"
+      [disabled]="!comentarioform.valid">Submit</ion-button>
+    </form>
+  </ion-card>
+  <ion-card *ngFor="let comentario of comentarios">
+    <ion-card-content>
+      <ion-card-title>{{ comentario.comentario }}</ion-card-title>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

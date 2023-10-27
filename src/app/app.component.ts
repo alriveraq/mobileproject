@@ -10,6 +10,7 @@ export class AppComponent {
   public appPages = [
     { title: 'Admin/principal', url: 'admin/principal', icon: 'mail' },
     { title: 'Login', url: 'usuario/login', icon: 'basket' },
+    { title: 'Productos', url: 'usuario/productos', icon: 'basket' },
 
   ];
 

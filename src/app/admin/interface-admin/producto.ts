@@ -1,3 +1,5 @@
+import { Subcategoria } from "./subcategoria";
+
 export class Producto {
     id: string;
     nombre: string;
@@ -13,6 +15,7 @@ export class Producto {
     formato?: string;
     voltaje?: string;
     stock: number;
+    subcategoria?: Subcategoria
 
     constructor(obj:any)
     {
@@ -30,5 +33,6 @@ export class Producto {
         this.formato = obj && obj.formato || null;
         this.voltaje = obj && obj.voltaje || null;
         this.stock = obj && obj.stock || null;
+        this.subcategoria = obj && obj.subcategoria || null;
     }
 }
