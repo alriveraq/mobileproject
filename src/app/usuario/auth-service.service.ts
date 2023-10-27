@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Usuario } from './interface-usuario/usuario';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,18 @@ export class AuthServiceService {
     }
   }
   logut(){
-    return this.authfirebase.signOut();
+    return this.authfirebase.signOut(); 
+  }
+
+  stateuser(){
+    return this.authfirebase.authState;
+  }
+  async getuid(){
+    const user = await this.authfirebase.currentUser;
+    if (user) {
+      return user.uid;
+    } else {
+      return null;
+    }
   }
 }

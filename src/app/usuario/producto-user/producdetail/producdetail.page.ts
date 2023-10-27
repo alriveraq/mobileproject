@@ -71,13 +71,6 @@ export class ProducdetailPage implements OnInit {
     });
   }
 
-  getproductoid(id: string) {
-    this.firebase.getproducto(id).subscribe(data => {
-      this.producto = data;
-      console.log("Soy la id",this.producto);
-    });
-  }
-
   getcomentarios() {
     this.firebase.getcomentariosporproducto(this.route.snapshot.params['id']).subscribe(data => {
       this.comentarios = data;

@@ -17,10 +17,10 @@ export class RegistroPage implements OnInit {
     id: '',
     nombre: '', // Add the 'nombre' property
     email: '',
+    uid: '',
     password: null,
     password2: null,
     rol: 'USER_ROLE',
-    imagen: '',
   };
 
   id: any = '';
@@ -63,12 +63,15 @@ export class RegistroPage implements OnInit {
         console.log(error);
       });
   
-      if (res) {
+      if (res != null && res.user != null) {
         console.log('Registro exitoso');
         this.usuario.password = null;
-        this.usuario.password2 = null;
+        this.usuario.password2 = null
+        this.usuario.email = this.registroForm.value.email;
+        this.usuario.nombre = this.registroForm.value.nombre;
+        this.usuario.uid = res.user.uid;  
         this.router.navigate(['/usuario/login']);
-        this.firebase.agregarUsuario(user).then(() => {
+        await this.firebase.agregarUsuario(this.usuario).then(() => {
           console.log('Usuario agregado');
         });
       }

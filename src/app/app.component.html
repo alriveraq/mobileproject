@@ -13,12 +13,18 @@
         <div></div>
         
         <ion-list id="inbox-list" class="list">
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-              <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
+            <ion-item *ngIf = "login == true" routerLink="/admin/principal" routerDirection="root">
+              <ion-icon name="grid-outline" slot="start"></ion-icon>
+              <ion-label>admin</ion-label>
             </ion-item>
-          </ion-menu-toggle>
+            <ion-item *ngIf = "login == false" routerLink="/usuario/login" routerDirection="root">
+              <ion-icon name="grid-outline" slot="start"></ion-icon>
+              <ion-label>Login</ion-label>
+            </ion-item>
+            <ion-item routerLink="/usuario/productos" routerDirection="root">
+              <ion-icon name="grid-outline" slot="start"></ion-icon>
+              <ion-label>Productos</ion-label>
+            </ion-item>
           <ion-button expand="full" (click)="logout()">Mi Botón</ion-button>
         </ion-list>        
       </ion-content>

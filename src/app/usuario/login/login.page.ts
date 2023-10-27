@@ -25,7 +25,7 @@ export class LoginPage implements OnInit {
     const res = await this.auth.login(this.credenciales.email, this.credenciales.password)
     if (res !== undefined) {
       console.log('Logueado correctamente'); 
-      this.router.navigate(['/admin/producto']);
+      this.router.navigate(['/usuario/productos']);
     }
 
   }
