@@ -10,7 +10,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { ProducdetailPage } from '../producto-user/producdetail/producdetail.page';
 import { VerperfilPage } from '../perfil/verperfil/verperfil.page';
-import { EditarperfilPage } from '../perfil/editarperfil/editarperfil.page';
 
 
 @NgModule({
@@ -20,7 +19,6 @@ import { EditarperfilPage } from '../perfil/editarperfil/editarperfil.page';
     ProductoUsuarioPage,
     ProducdetailPage,
     VerperfilPage,
-    EditarperfilPage
   ],
   imports: [
     CommonModule,

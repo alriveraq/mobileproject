@@ -39,7 +39,7 @@ export class LocalesPage implements OnInit {
     console.log("Entrando :getlocales");
     // Crea un Wait (Esperar)
     const loading = await this.loadingController.create({
-      message: 'Harrys Loading...'
+      message: '...'
     });
     // Muestra el Wait
     await loading.present();

@@ -54,7 +54,6 @@ export class RegistroPage implements OnInit {
         password: this.registroForm.value.password,
         password2: this.registroForm.value.password2,
         rol: 'USER_ROLE',
-        imagen: '',
       };
   
       console.log(this.usuario);
@@ -65,13 +64,15 @@ export class RegistroPage implements OnInit {
   
       if (res != null && res.user != null) {
         console.log('Registro exitoso');
+        const path = 'usuario';
+        const id = res.user.uid;
         this.usuario.password = null;
         this.usuario.password2 = null
         this.usuario.email = this.registroForm.value.email;
         this.usuario.nombre = this.registroForm.value.nombre;
-        this.usuario.uid = res.user.uid;  
+        this.usuario.uid = id;  
         this.router.navigate(['/usuario/login']);
-        await this.firebase.agregarUsuario(this.usuario).then(() => {
+        await this.firebase.createDoc(this.usuario, path, id).then(() => {
           console.log('Usuario agregado');
         });
       }

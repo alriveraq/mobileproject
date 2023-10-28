@@ -67,7 +67,7 @@ export class ProducdetailPage implements OnInit {
   getproducto() {
     this.firebase.getproducto(this.route.snapshot.params['id']).subscribe(data => {
       this.producto = data;
-      console.log(this.producto);
+      console.log('soy el producto',this.producto);
     });
   }
 

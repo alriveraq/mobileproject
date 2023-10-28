@@ -45,7 +45,7 @@ export class EmpleadosPage implements OnInit {
     console.log("Entrando :getempleados");
     // Crea un Wait (Esperar)
     const loading = await this.loadingController.create({
-      message: 'Harrys Loading...'
+      message: '...'
     });
     // Muestra el Wait
     await loading.present();

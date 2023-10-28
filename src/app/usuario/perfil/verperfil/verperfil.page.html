@@ -1,13 +1,16 @@
 <app-header titulo="Mi perfil"></app-header>
 
 <ion-content>
-  <ion-card>
-    <ion-card-header>
-      Datos del Usuario
-    </ion-card-header>
+  <ion-card *ngIf ="info">
     <ion-card-content>
-      <p><strong>Nombre:</strong> {{ usuario.nombre }}</p>
-      <p><strong>Email:</strong> {{ usuario.email }}</p>
+      <ion-item (click)="editAtributo('nombre')" slot="end" name="create">
+        <ion-label>Nombre</ion-label>
+        <ion-text>{{ info.nombre }}</ion-text>
+      </ion-item>
+      <ion-item (click)="editAtributo('email')" slot="end" name="create" >
+        <ion-label>Email</ion-label>
+        <ion-text>{{ info.email }}</ion-text>
+      </ion-item>
     </ion-card-content>
   </ion-card>
 </ion-content>

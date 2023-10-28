@@ -12,9 +12,13 @@ export class ServicioUsuarioService {
 
   constructor(private db: AngularFirestore) {}
 
-  agregarUsuario(usuario: Usuario): Promise<any> {
-    return this.db.collection<Usuario>('usuario').add(usuario);
+  createDoc(data: any, path: string, id: string) {
+
+    const collection = this.db.collection(path);
+    return collection.doc(id).set(data);
+
   }
+  
 
   getUsuario(id: string): Observable<any> {
     return this.db.collection<Usuario>('usuario').doc(id).snapshotChanges()
@@ -32,7 +36,11 @@ export class ServicioUsuarioService {
       );
   }
 
-  actualizarCategoria(id: string, data: any): Promise<any> {
-    return this.db.collection<Usuario>('usuario').doc(id).update(data)
+  getDoc<tipo>(path: string, id: string) {
+    return this.db.collection(path).doc<tipo>(id).valueChanges()
+   }
+
+  updateDoc(path: string, id: string, data: any) {
+    return  this.db.collection(path).doc(id).update(data);
   }
 }
