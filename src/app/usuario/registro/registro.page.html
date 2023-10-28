@@ -4,6 +4,9 @@
   <ion-card>
     <ion-card-header>
       <ion-card-title>Formulario de Registro</ion-card-title>
+      <div class="head">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </div>
     </ion-card-header>
 
     <ion-card-content>
@@ -11,26 +14,26 @@
         <ion-list>
           <ion-item>
             <ion-label position="floating">Nombre</ion-label>
-            <ion-input formControlName="nombre" type="text"></ion-input>
+            <ion-input formControlName="nombre" type="text" placeholder="Ingresar Nombre"></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label position="floating">Email</ion-label>
-            <ion-input formControlName="email" type="email"></ion-input>
+            <ion-input formControlName="email" type="email" placeholder="Ingresar Correo"></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label position="floating">Contraseña</ion-label>
-            <ion-input formControlName="password" type="password"></ion-input>
+            <ion-input formControlName="password" type="password" placeholder="Ingresar Contraseña"></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label position="floating">Confirmar Contraseña</ion-label>
-            <ion-input formControlName="password2" type="password"></ion-input>
+            <ion-input formControlName="password2" type="password" placeholder="Confirmar Contraseña"></ion-input>
           </ion-item>
         </ion-list>
 
-        <ion-button expand="full" type="submit">Registrarse</ion-button>
+        <ion-button expand="block" type="submit">Registrarse</ion-button>
       </form>
     </ion-card-content>
   </ion-card>
