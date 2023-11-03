@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Categoria } from '../../interface-admin/categoria';
 import { LoadingController, AlertController, NavController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ServicioAdminService } from '../../servicio/servicio-admin.service';
 import { Observable, map } from 'rxjs';
 import { CategoriaServiceService } from '../categoria-service.service';
 
@@ -23,7 +22,6 @@ export class CategoriaPage implements OnInit {
   }; // Propiedad para almacenar los datos
   constructor(
     private navCtrl: NavController,
-    private restApi: ServicioAdminService,
     private firestore:CategoriaServiceService,
     private loadingController: LoadingController,
     public route: ActivatedRoute,

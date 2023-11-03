@@ -1,17 +1,7 @@
 <app-header titulo="Empleados"></app-header>
 
 <ion-content>
-  <ion-item>
-    <ion-label>Tipo de turnos</ion-label>
-    <ion-select [(ngModel)]="filtrohorario" (ionChange)="filtrarempleados()">
-      <ion-select-option value=''>Todos</ion-select-option>
-      <ion-select-option value="1">Turno 1</ion-select-option>
-      <ion-select-option value="2">Turno 2</ion-select-option>
-      <ion-select-option value="3">Turno 3</ion-select-option>
-    </ion-select>
-  </ion-item>
-
-  <ion-list *ngIf="!filtrohorario || filtrohorario === ''">
+  <ion-list>
     <ion-item *ngFor="let empleado of empleados" lines="full">
         <img id="img_empleado" [src]="empleado.img" alt="Imagen del empleado">
       <ion-card-header>
@@ -25,44 +15,11 @@
         <ion-card-content>Telefono: {{ empleado.telefono }}</ion-card-content>
         <ion-card-content>Email: {{ empleado.email }}</ion-card-content>
         <ion-button (click)="editarEmpleados(empleado.id)">Editar</ion-button>
-        <ion-button type="button" shape="round" color="danger" expand="block" (click)="eliminar(empleado.id)">Eliminar</ion-button>
+        <ion-button type="button" shape="round" color="danger" expand="block" (click)="eliminarempleado(empleado.id)">Eliminar</ion-button>
       </ion-card-content>
     </ion-item>
   </ion-list>
 
-  <ion-list *ngIf="filtrohorario">
-    <ion-item *ngFor="let empleado of empleadosfiltrados" lines="full">
-      <ion-label id="img_empleado">
-        <img [src]="empleado.img" alt="Imagen del empleado">
-      </ion-label>
-      <ion-card-header>
-        <ion-card-title>{{ empleado.nombre }} {{empleado.apellidos}}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <ion-card-title>Turno del empleado: {{ empleado.turno }}</ion-card-title>
-        <ion-card-content>Fecha de fecha_nacimiento: {{ empleado.fecha_nacimiento }}</ion-card-content>
-        <ion-card-content>Rut : {{ empleado.rut }}</ion-card-content>
-        <ion-card-content>Direccion: {{ empleado.direccion }}</ion-card-content>
-        <ion-card-content>Telefono: {{ empleado.telefono }}</ion-card-content>
-        <ion-card-content>Email: {{ empleado.email }}</ion-card-content>
-        <ion-button (click)="editarEmpleados(empleado.id)">Editar</ion-button>
-        <ion-button type="button" shape="round" color="danger" expand="block" (click)="eliminar(empleado.id)">Eliminar</ion-button>
-        <ion-fab>
-          <ion-fab-button color="medium" size="small">
-            <ion-icon name="caret-forward-outline"></ion-icon>
-          </ion-fab-button>
-          <ion-fab-list side="end">
-            <ion-fab-button color="warning" (click)="editarEmpleados(empleado.id)" >
-              <ion-icon name="create-outline"></ion-icon>
-            </ion-fab-button>
-            <ion-fab-button color="danger" (click)="eliminar(empleado.id)">
-              <ion-icon name="trash-outline" ></ion-icon>
-            </ion-fab-button>
-          </ion-fab-list>
-        </ion-fab>
-      </ion-card-content>
-    </ion-item>
-  </ion-list>
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button routerLink="/admin/empleados-agregar">
       <ion-icon name="add"></ion-icon>

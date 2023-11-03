@@ -1,0 +1,12 @@
+<app-header titulo="Editar Subcategoria"></app-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="subcategoriaForm" (ngSubmit)="onformSubmit(subcategoriaForm.value)">
+
+    <ion-item>
+      <ion-label>Nombre</ion-label>
+      <ion-input formControlName="nombre" required></ion-input>
+    </ion-item>
+    <ion-button type="submit" expand="block" [disabled]="!subcategoriaForm.valid">Guardar</ion-button>
+  </form>
+</ion-content>

@@ -10,13 +10,13 @@
         <ion-card-title>{{ local.nombre }}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <ion-card-title>Turno del local: {{ local.direccion }}</ion-card-title>
+        <ion-card-title>Direccion del local: {{ local.direccion }}</ion-card-title>
         <ion-card-content>Comuna: {{ local.comuna }}</ion-card-content>
         <ion-card-content>Region : {{ local.region }}</ion-card-content>
-        <ion-card-content>Direccion: {{ local.telefono }}</ion-card-content>
+        <ion-card-content>Direccion: {{ local.direccion }}</ion-card-content>
         <ion-card-content>Telefono: {{ local.telefono }}</ion-card-content>
         <ion-button (click)="editarlocal(local.id)">Editar</ion-button>
-        <ion-button type="button" shape="round" color="danger" expand="block" (click)="eliminar(local.id)">Eliminar</ion-button>
+        <ion-button type="button" shape="round" color="danger" expand="block" (click)="eliminarlocal(local.id)">Eliminar</ion-button>
       </ion-card-content>
     </ion-item>
   </ion-list>

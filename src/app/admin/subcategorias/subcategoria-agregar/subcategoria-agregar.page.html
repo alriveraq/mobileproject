@@ -1,0 +1,18 @@
+<app-header titulo="Agregar Subcategoria"></app-header>
+
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="subcategoriaform" (ngSubmit)="agregarsubcategoria()">
+    <ion-item>
+      <ion-label>Categoria</ion-label>
+      <ion-select formControlName="categoria" required>
+        <ion-select-option value="{{categoria.id}}" *ngFor="let categoria of categorias">{{categoria.nombre}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Nombre</ion-label>
+      <ion-input formControlName="nombre" required></ion-input>
+    </ion-item>
+    <ion-button type="submit" [disabled]="subcategoriaform.invalid" expand="block">Agregar</ion-button>
+  </form>
+</ion-content>

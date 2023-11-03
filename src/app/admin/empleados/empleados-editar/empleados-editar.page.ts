@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-import { ServicioAdminService } from '../../servicio/servicio-admin.service';
 import { Empleados } from '../../interface-admin/empleados';
+import { EmpleadoService } from '../empleado.service';
 
 @Component({
   selector: 'app-empleados-editar',
@@ -12,7 +12,6 @@ import { Empleados } from '../../interface-admin/empleados';
 })
 export class EmpleadosEditarPage implements OnInit {
   empleadoForm!: FormGroup;
-
   empleado: Empleados = {
     id: '',
     nombre: '',
@@ -29,7 +28,7 @@ export class EmpleadosEditarPage implements OnInit {
   id: any = '';
 
   constructor(
-    public restApi: ServicioAdminService,
+    public firestore: EmpleadoService,
     public loadingController: LoadingController,
     public alertController: AlertController,
     public route: ActivatedRoute,
@@ -51,26 +50,23 @@ export class EmpleadosEditarPage implements OnInit {
       empleado_telefono: [null, Validators.required],
       empleado_email: [null, Validators.required],
       empleado_turno: [null, Validators.required],
-      empleado_img: [null, Validators.required]
     });
   }
 
   async onformSubmit(form: NgForm) {
-    console.log("onformSubmit ID " + this.id);
-    this.empleado.id = this.id;
-    await this.restApi.actualizarempleado(this.id, this.empleado)
-    .subscribe({
-      next: data => {
-        console.log("actualizarempleado OK");
-        console.log(data);
-        this.presentAlertConfirm("Actualizado correctamente");
-    }
-    , complete: () => {}
-    , error: (err) => {
-      console.log("actualizarempleado ERROR");
-      console.log(err);
-    }
-    })
+    const loading = await this.loadingController.create({
+      message: 'Actualizando...',
+    });
+    await loading.present();
+    this.id = this.route.snapshot.params['id']
+    await this.firestore.actualizarempleado(this.id, form)
+      .then(() => {
+        loading.dismiss();
+        this.router.navigate(['/admin/empleados/']);
+      }, (error) => {
+        console.log(error);
+        loading.dismiss();
+      });
   }
 
   async actualizarempleado(id: string) {
@@ -78,28 +74,29 @@ export class EmpleadosEditarPage implements OnInit {
       message: 'Cargando...'
     });
     await loading.present();
-    await this.restApi.getempleado(id + "")
+    await this.firestore.getempleado(id + "")
     .subscribe({
       next: data => {
-        console.log("getempleado OK");
+        console.log('Tipo de Producto seleccionado:');
+        console.log("getcategoria OK");
         console.log(data);
         this.id = data.id;
-        this.empleadoForm.setValue({
-          empleado_nombre: data.nombre,
-          empleado_apellidos: data.apellidos,
-          empleado_fecha_nacimiento: data.fecha_nacimiento,
-          empleado_rut: data.rut,
-          empleado_direccion: data.direccion,
-          empleado_telefono: data.telefono,
-          empleado_email: data.email,
-          empleado_turno: data.turno,
-          empleado_img: data.img
+        this.empleadoForm.patchValue({
+          nombre: data.nombre,
+          apellidos: data.apellidos,
+          fecha_nacimiento: data.fecha_nacimiento,
+          rut: data.rut,
+          direccion: data.direccion,
+          telefono: data.telefono,
+          email: data.email,
+          turno: data.turno,
+
         });
         loading.dismiss();
     }
     , complete: () => {}
     , error: (err) => {
-      console.log("getempleado ERROR");
+      console.log("getcategoria ERROR");
       console.log(err);
       loading.dismiss();
     }
@@ -114,7 +111,7 @@ export class EmpleadosEditarPage implements OnInit {
         {
           text: 'Okay',
           handler: () => {
-            this.router.navigate(['/empleados/']);
+            this.router.navigate(['/admin/empleados/']);
           }
         }
       ]

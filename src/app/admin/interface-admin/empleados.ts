@@ -1,14 +1,14 @@
 export class Empleados {
     id: string;
-    nombre: string;
-    apellidos: string;
-    fecha_nacimiento: string;
-    rut: string;
-    direccion: string;
-    telefono: string;
-    email: string;
-    turno: string;
-    img: string;
+    nombre?: string;
+    apellidos?: string;
+    fecha_nacimiento?: string;
+    rut?: string;
+    direccion?: string;
+    telefono?: string;
+    email?: string;
+    turno?: string;
+    img?: string;
 
     constructor(obj: any) {
         this.id = obj && obj.id || null;

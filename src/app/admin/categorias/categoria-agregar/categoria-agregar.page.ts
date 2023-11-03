@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Categoria } from '../../interface-admin/categoria';
-import { ServicioAdminService } from '../../servicio/servicio-admin.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingController, AlertController } from '@ionic/angular';
-import { FirebaseService } from '../../servicio/firebase.service';
+import { CategoriaServiceService } from '../categoria-service.service';
 
 @Component({
   selector: 'app-categoria-agregar',
@@ -24,7 +23,7 @@ export class CategoriaAgregarPage implements OnInit{
   id: any = '';
 
 
-  constructor(private firebase: FirebaseService,
+  constructor(private firebase: CategoriaServiceService,
     private frombuilder: FormBuilder,
     private router: Router,
     private aRoute: ActivatedRoute) {

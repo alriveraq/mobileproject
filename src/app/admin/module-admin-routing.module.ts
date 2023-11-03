@@ -14,6 +14,8 @@ import { ProductoPage } from './producto/producto/producto.page';
 import { ProductoAgregarPage } from './producto/producto-agregar/producto-agregar.page';
 import { ProductoEditarPage } from './producto/producto-editar/producto-editar.page';
 import { SubcategoriaPage } from './subcategorias/subcategoria/subcategoria.page';
+import { SubcategoriaAgregarPage } from './subcategorias/subcategoria-agregar/subcategoria-agregar.page';
+import { SubcategoriaEditarPage } from './subcategorias/subcategoria-editar/subcategoria-editar.page';
 
 
 
@@ -73,7 +75,16 @@ const routes: Routes = [
       {
         path: 'subcategoria',
         component: SubcategoriaPage
+      },
+      {
+        path: 'subcategoria-agregar',
+        component: SubcategoriaAgregarPage
+      },
+      {
+        path: 'subcategoria-editar/:id',
+        component: SubcategoriaEditarPage
       }
+
 ];
 
 @NgModule({

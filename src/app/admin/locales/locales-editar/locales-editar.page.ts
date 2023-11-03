@@ -3,7 +3,7 @@
   import { ActivatedRoute, Router } from '@angular/router';
   import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
   import { Local } from '../../interface-admin/local';
-  import { ServicioAdminService } from '../../servicio/servicio-admin.service';
+import { LocalService } from '../local.service';
 
   @Component({
     selector: 'app-locales-editar',
@@ -12,7 +12,6 @@
   })
   export class LocalesEditarPage implements OnInit {
     localForm!: FormGroup;
-
     local: Local = {
       id: '',
       nombre: '',
@@ -25,7 +24,7 @@
     id: any = '';
 
     constructor(
-      public restApi: ServicioAdminService,
+      public firestore: LocalService,
       public loadingController: LoadingController,
       public alertController: AlertController,
       public route: ActivatedRoute,
@@ -42,62 +41,58 @@
       this.actualizarlocal(this.route.snapshot.params['id']);
 
       this.localForm = this.formBuilder.group({
-        local_nombre: [null, Validators.required],
-        local_direccion: [null, Validators.required],
-        local_comuna: [null, Validators.required],
-        local_region: [null, Validators.required],
-        local_telefono: [null, Validators.required],
-        local_img: [null, Validators.required]
+        nombre: [null, Validators.required],
+        direccion: [null, Validators.required],
+        comuna: [null, Validators.required],
+        region: [null, Validators.required],
+        telefono: [null, Validators.required],
       });
     }
 
     async onformSubmit(form: NgForm) {
-      console.log("onformSubmit ID " + this.id);
-      this.local.id = this.id;
-      await this.restApi.actualizarlocal(this.id, this.local)
-      .subscribe({
-        next: data => {
-          console.log("actualizarlocal OK");
-          console.log(data);
-          this.presentAlertConfirm("Actualizado correctamente");
-      }
-      , complete: () => {}
-      , error: (err) => {
-        console.log("actualizarlocal ERROR");
-        console.log(err);
-      }
-      })
-    }
+    const loading = await this.loadingController.create({
+      message: 'Actualizando...',
+    });
+    await loading.present();
+    this.id = this.route.snapshot.params['id']
+    await this.firestore.actualizarlocal(this.id, form)
+      .then(() => {
+        loading.dismiss();
+        this.router.navigate(['/admin/locales/']);
+      }, (error) => {
+        console.log(error);
+        loading.dismiss();
+      });
+  }
 
     async actualizarlocal(id: string) {
-      const loading = await this.loadingController.create({
-        message: 'Cargando...'
-      });
-      await loading.present();
-      await this.restApi.getlocal(id + "")
-      .subscribe({
-        next: data => {
-          console.log("getlocal OK");
-          console.log(data);
-          this.id = data.id;
-          this.localForm.setValue({
-            local_nombre: data.nombre,
-            local_direccion: data.direccion,
-            local_comuna: data.comuna,
-            local_region: data.region,
-            local_telefono: data.telefono,
-            local_img: data.img
-          });
-          loading.dismiss();
-      }
-      , complete: () => {}
-      , error: (err) => {
-        console.log("getlocal ERROR");
-        console.log(err);
+    const loading = await this.loadingController.create({
+      message: 'Cargando...'
+    });
+    await loading.present();
+    await this.firestore.getlocal(id + "")
+    .subscribe({
+      next: data => {
+        console.log("getcategoria OK");
+        console.log(data);
+        this.id = data.id;
+        this.localForm.patchValue({
+          nombre: data.nombre,
+          direccion: data.direccion,
+          comuna: data.comuna,
+          region: data.region,
+          telefono: data.telefono,
+        });
         loading.dismiss();
-      }
-      })
     }
+    , complete: () => {}
+    , error: (err) => {
+      console.log("getcategoria ERROR");
+      console.log(err);
+      loading.dismiss();
+    }
+    })
+  }
 
 
     async presentAlertConfirm(msg: string) {
@@ -108,7 +103,7 @@
           {
             text: 'Okay',
             handler: () => {
-              this.router.navigate(['/locales/']);
+              this.router.navigate(['admin/locales/']);
             }
           }
         ]

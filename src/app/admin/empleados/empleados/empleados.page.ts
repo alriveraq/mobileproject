@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Empleados } from '../../interface-admin/empleados';
 import { LoadingController, AlertController, NavController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ServicioAdminService } from '../../servicio/servicio-admin.service';
 import { Observable } from 'rxjs';
+import { EmpleadoService } from '../empleado.service';
 
 
 @Component({
@@ -30,7 +30,7 @@ export class EmpleadosPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
-    private restApi: ServicioAdminService,
+    private firestore: EmpleadoService,
     private loadingController: LoadingController,
     public route: ActivatedRoute,
     public router: Router,
@@ -41,32 +41,17 @@ export class EmpleadosPage implements OnInit {
     this.getempleados();
   }
 
-  async getempleados() {
-    console.log("Entrando :getempleados");
-    // Crea un Wait (Esperar)
-    const loading = await this.loadingController.create({
-      message: '...'
+  getempleados() { 
+    this.firestore.getempleados().subscribe(data => {
+      this.empleados = [];
+      data.forEach((element: any) => {
+        this.empleados.push({
+          id: element.payload.doc.id,
+          ...element.payload.doc.data()
+        })
+      });
+      console.log(this.empleados);
     });
-    // Muestra el Wait
-    await loading.present();
-    console.log("Entrando :");
-    // Obtiene el Observable del servicio
-    await this.restApi.getempleados()
-      .subscribe({
-        next: (res) => { 
-          console.log("Res:" + res);
-  // Si funciona asigno el resultado al arreglo productos
-          this.empleados = res;
-          console.log("thisProductos:",this.empleados);
-          loading.dismiss();
-        }
-        , complete: () => { }
-        , error: (err) => {
-  // Si da error, imprimo en consola.
-          console.log("Err:" + err);
-          loading.dismiss();
-        }
-      })
   }
 
   editarEmpleados(empleadoId: string) {
@@ -76,12 +61,12 @@ export class EmpleadosPage implements OnInit {
   }
 
   async getempleado() {
-    console.log("getProduct **************** ParamMap ID:" + this.route.snapshot.paramMap.get('id'));
+    console.log("getProduct ParamMap ID:" + this.route.snapshot.paramMap.get('id'));
     // Creamos un Wait
     const loading = await this.loadingController.create({ message: 'Loading...' });
     // Mostramos el Wait
     await loading.present();
-    await this.restApi.getempleado(this.route.snapshot.paramMap.get('id')!)
+    await this.firestore.getempleado(this.route.snapshot.paramMap.get('id')!)
       .subscribe({
         next: (res) => {
           console.log("Data *****************");
@@ -97,63 +82,12 @@ export class EmpleadosPage implements OnInit {
         }
       })
   }
-
-  async confirmarEliminacion(id: string) {
-    const loading = await this.loadingController.create({ message: 'Loading...' });
-    await loading.present();
-    await this.restApi.eliminarempleado(id)
-      .subscribe({
-        next: (res) => {
-          console.log("Data *****************");
-          console.log(res);
-          loading.dismiss();
-          this.getempleados();
-        },
-        complete: () => { },
-        error: (err) => {
-          console.log("Error DetailProduct Página", err);
-          loading.dismiss();
-        }
-      });
-    }
-
-    async eliminarEmpleado(id: string) {
-      const alert = await this.alertController.create({
-        header: 'Alerta',
-        message: '¿Está seguro de eliminar al empleado?',
-        buttons: [
-          {
-            text: 'Cancelar',
-            handler: () => {
-              console.log('Confirm Cancel');
-            }
-          },
-          {
-            text: 'Aceptar',
-            handler: () => {
-              console.log('Confirm Ok');
-              this.confirmarEliminacion(id);
-            }
-          }
-        ]
-      });
-      await alert.present();
-    }
-
-    async eliminar(id: string) {
-      this.eliminarEmpleado(id);
-    }
-
-    filtrarempleados(){
-      if (!this.filtrohorario || this.filtrohorario === '') {
-        // Si no se selecciona ningún tipo o se selecciona "Todos", mostrar todos los productos.
-        this.empleadosfiltrados = this.empleados;
-      } else {
-        // Filtrar productos basados en el tipo de producto seleccionado.
-        this.empleadosfiltrados = this.empleados.filter(
-          (empleado) => empleado.turno === this.filtrohorario
-        );
-      }
-    }
+  eliminarempleado(id: string) {
+    this.firestore.eliminarempleado(id).then(() => {
+      console.log('empelado eliminado con exito');
+    }, (error) => {
+      console.error(error);
+    });
+  }
 
 }

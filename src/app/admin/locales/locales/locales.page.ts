@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Local } from '../../interface-admin/local';
 import { LoadingController, AlertController, NavController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ServicioAdminService } from '../../servicio/servicio-admin.service';
-import { Observable } from 'rxjs';
+import { LocalService } from '../local.service';
 
 @Component({
   selector: 'app-locales',
@@ -11,7 +10,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./locales.page.scss'],
 })
 export class LocalesPage implements OnInit {
-  locales?: Local[];
+  locales: Local[] = [];
   local: Local = {
     id: '',
     nombre: '',
@@ -23,7 +22,7 @@ export class LocalesPage implements OnInit {
   };
 
   constructor(private navCtrl: NavController,
-    private restApi: ServicioAdminService,
+    private firestore: LocalService,
     private loadingController: LoadingController,
     public route: ActivatedRoute,
     public router: Router,
@@ -35,48 +34,35 @@ export class LocalesPage implements OnInit {
     this.getlocales();
   }
 
-  async getlocales() {
-    console.log("Entrando :getlocales");
-    // Crea un Wait (Esperar)
-    const loading = await this.loadingController.create({
-      message: '...'
+  getlocales() {
+    this.firestore.getlocales().subscribe(data => {
+      this.locales = [];
+      data.forEach((element: any) => {
+        this.locales.push({
+          id: element.payload.doc.id,
+          ...element.payload.doc.data()
+        })
+      });
+      console.log(this.locales);
     });
-    // Muestra el Wait
-    await loading.present();
-    console.log("Entrando :");
-    // Obtiene el Observable del servicio
-    await this.restApi.getlocales()
-      .subscribe({
-        next: (res) => { 
-          console.log("Res:" + res);
-  // Si funciona asigno el resultado al arreglo productos
-          this.locales = res;
-          console.log("thisProductos:",this.locales);
-          loading.dismiss();
-        }
-        , complete: () => { }
-        , error: (err) => {
-  // Si da error, imprimo en consola.
-          console.log("Err:" + err);
-          loading.dismiss();
-        }
-      })
+
+
   }
 
-  editarlocal(localId: string) {
-    // Redirige a la página "local-editar" con el ID de la categoría como parámetro
-    console.log("editarlocal **************** ID:" + localId);
-    this.navCtrl.navigateForward(`/locales-editar/${localId}`);
-  }
 
+  editarlocal(localid: string) {
+    // Redirige a la página "categoria-editar" con el ID de la categoría como parámetro
+    console.log("editarCategoria **************** ID:" + localid);
+    this.navCtrl.navigateForward(`/admin/locales-editar/${localid}`);
+  }
 
   async getlocal() {
-    console.log("getProduct **************** ParamMap ID:" + this.route.snapshot.paramMap.get('id'));
+    console.log("getProduct ParamMap ID:" + this.route.snapshot.paramMap.get('id'));
     // Creamos un Wait
     const loading = await this.loadingController.create({ message: 'Loading...' });
     // Mostramos el Wait
     await loading.present();
-    await this.restApi.getlocal(this.route.snapshot.paramMap.get('id')!)
+    await this.firestore.getlocal(this.route.snapshot.paramMap.get('id')!)
       .subscribe({
         next: (res) => {
           console.log("Data *****************");
@@ -93,50 +79,15 @@ export class LocalesPage implements OnInit {
       })
   }
 
-  async confirmarEliminacion(id: string) {
-    const loading = await this.loadingController.create({ message: 'Loading...' });
-    await loading.present();
-    await this.restApi.eliminarlocal(id)
-      .subscribe({
-        next: (res) => {
-          console.log("Data *****************");
-          console.log(res);
-          loading.dismiss();
-          this.getlocales();
-        },
-        complete: () => { },
-        error: (err) => {
-          console.log("Error DetailProduct Página", err);
-          loading.dismiss();
-        }
-      });
+  eliminarlocal(id: string) {
+    this.firestore.eliminarlocal(id).then(() => {
+      console.log('empelado eliminado con exito');
     }
+    ).catch(error => {
+      console.log(error);
+    });
+  }
 
-    async eliminarlocal(id: string) {
-      const alert = await this.alertController.create({
-        header: 'Alerta',
-        message: '¿Está seguro de eliminar la categoría?',
-        buttons: [
-          {
-            text: 'Cancelar',
-            handler: () => {
-              console.log('Confirm Cancel');
-            }
-          },
-          {
-            text: 'Aceptar',
-            handler: () => {
-              console.log('Confirm Ok');
-              this.confirmarEliminacion(id);
-            }
-          }
-        ]
-      });
-      await alert.present();
-    }
 
-    async eliminar(id: string) {
-      this.eliminarlocal(id);
-    }
 
 }

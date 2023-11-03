@@ -3,7 +3,7 @@ import { LoadingController, AlertController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Categoria } from '../../interface-admin/categoria';
-import { FirebaseService } from '../../servicio/firebase.service';
+import { CategoriaServiceService } from '../categoria-service.service';
 
 @Component({
   selector: 'app-categoria-editar',
@@ -21,7 +21,7 @@ export class CategoriaEditarPage implements OnInit {
   id: any = '';
 
   constructor(
-    public firestore: FirebaseService,
+    public firestore: CategoriaServiceService,
     public loadingController: LoadingController,
     public alertController: AlertController,
     public route: ActivatedRoute,

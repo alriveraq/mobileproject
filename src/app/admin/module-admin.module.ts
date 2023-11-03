@@ -19,6 +19,8 @@ import { SubcategoriaPage } from './subcategorias/subcategoria/subcategoria.page
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ComponentsModule } from '../components/components.module';
+import { SubcategoriaAgregarPage } from './subcategorias/subcategoria-agregar/subcategoria-agregar.page';
+import { SubcategoriaEditarPage } from './subcategorias/subcategoria-editar/subcategoria-editar.page';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { ComponentsModule } from '../components/components.module';
     ProductoPage,
     ProductoAgregarPage,
     ProductoEditarPage,
-    SubcategoriaPage
+    SubcategoriaPage,
+    SubcategoriaAgregarPage,
+    SubcategoriaEditarPage
   ],
   imports: [
     CommonModule,

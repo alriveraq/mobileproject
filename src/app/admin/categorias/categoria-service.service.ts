@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, DocumentReference } from '@angular/fire/compat/firestore';
 import { Observable, of } from 'rxjs';
 import { Categoria } from '../interface-admin/categoria';
 import { catchError, map } from 'rxjs/operators';
@@ -39,5 +39,9 @@ export class CategoriaServiceService {
 
   actualizarCategoria(id: string, data: any): Promise<any> {
     return this.db.collection<Categoria>('categorias').doc(id).update(data)
+  }
+
+  getcref(id: string): DocumentReference<Categoria> { // Change the return type to DocumentReference<Subcategoria>
+    return this.db.collection<Categoria>('categorias').doc(id).ref; // Return the reference directly
   }
 }

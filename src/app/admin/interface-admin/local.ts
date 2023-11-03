@@ -1,11 +1,11 @@
 export class Local {
     id: string;
-    nombre: string;
-    direccion: string;
-    comuna: string;
-    region: string;
-    telefono: string;
-    img: string;
+    nombre?: string;
+    direccion?: string;
+    comuna?: string;
+    region?: string;
+    telefono?: string;
+    img?: string;
 
     constructor(obj:any)
     {
