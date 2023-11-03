@@ -1,7 +1,7 @@
 <app-header titulo="Agregar Empleados"></app-header>
 
 <ion-content padding>
-  <form [formGroup]="empleadoform"  (ngSubmit)="(empleadoform.value)">
+  <form [formGroup]="empleadoform"  (ngSubmit)="agregarempleado()">
     <ion-item>
       <ion-label position="floating">Nombre</ion-label>
       <ion-input type="text" formControlName="nombre"></ion-input>

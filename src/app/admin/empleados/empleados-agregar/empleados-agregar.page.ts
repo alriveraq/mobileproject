@@ -48,7 +48,7 @@ export class EmpleadosAgregarPage implements OnInit {
       fecha_nacimiento: ['', Validators.required],
       rut: ['', Validators.required],
       direccion: ['', Validators.required],
-      telefon: ['', Validators.required],
+      telefono: ['', Validators.required],
       email: ['', Validators.required],
       turno: ['', Validators.required],
       img: ['', Validators.required]
