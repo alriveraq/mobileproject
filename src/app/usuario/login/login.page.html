@@ -1,20 +1,25 @@
 <app-header titulo="Iniciar Sesion"></app-header>
 
-<ion-content>
+
+<ion-content class="inicio">
+  <div class="head">
+    <h1>¡Bienvenido!</h1>
+    <ion-icon name="person-circle-outline"></ion-icon>
+  </div>
   <ion-card>
-    <ion-card-content>
+    <ion-card-content class="form">
       <ion-list>
-        <ion-item>
+        <ion-item class="input">
           <ion-label position="floating">Correo electrónico</ion-label>
-          <ion-input [(ngModel)]="credenciales.email" type="email"></ion-input>
+          <ion-input [(ngModel)]="credenciales.email" type="email"  placeholder="Ingresar Correo"></ion-input>
         </ion-item>
-        <ion-item>
+        <ion-item class="input">
           <ion-label position="floating">Contraseña</ion-label>
-          <ion-input [(ngModel)]="credenciales.password" type="password"></ion-input>
+          <ion-input [(ngModel)]="credenciales.password" type="password" placeholder="Ingresar Contraseña" ></ion-input>
         </ion-item>
       </ion-list>
-      <ion-button expand="full" (click)="login()">Iniciar sesión</ion-button>
-      <ion-button expand="full" routerLink="/usuario/registro">Registrarse</ion-button>
+        <ion-button expand="round" (click)="login()">Iniciar sesión</ion-button>
+        <ion-button expand="round" routerLink="/usuario/registro">Registrarse</ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>

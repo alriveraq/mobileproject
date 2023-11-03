@@ -1,0 +1,27 @@
+ion-card-title{
+    text-align: center;
+}
+
+.head{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+}
+
+ion-icon{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 7px solid #5e7ccc;
+    margin-right: 14px;
+  }
+
+  ion-item {
+    color: white;
+    --background: #3880ff;
+    margin-top: 10px;
+    height: 55px;
+    text-transform: initial;
+    border-radius: 70px;
+  }
