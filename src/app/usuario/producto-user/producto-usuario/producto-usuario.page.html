@@ -2,27 +2,25 @@
 
 <ion-content>
   <ion-card class="producto-carta" *ngFor="let producto of productos" (click)="verproducto(producto.id)" >
-    <img [src]="producto.img" alt="Imagen del Producto">
+    <img class="img" [src]="producto.img" alt="Imagen del Producto">
     <ion-card-header>
       <ion-card-title class="nombre-producto">{{ producto.nombre }}</ion-card-title>
     </ion-card-header>
+    <ion-card-title class="precio">Precio: ${{ producto.precio }}</ion-card-title>
     <ion-card-content>
       <ng-container *ngIf="producto.tipo_producto === 'GPU'">
-        <ion-card-content class="contenido">-GPU: {{ producto.gpu }}</ion-card-content>
-        <ion-card-content class="contenido">-Memoria: {{ producto.memoria }}</ion-card-content>
-        <ion-card-content class="contenido">-Frecuencia: {{ producto.frecuencia }}</ion-card-content>
-        <ion-card-content class="contenido">-Bus: {{ producto.bus }}</ion-card-content>
+        <ion-card-content class="contenido">GPU: {{ producto.gpu }}</ion-card-content>
+        <ion-card-content class="contenido">Memoria: {{ producto.memoria }}</ion-card-content>
+        <ion-card-content class="contenido">Frecuencia: {{ producto.frecuencia }}</ion-card-content>
+        <ion-card-content class="contenido">Bus: {{ producto.bus }}</ion-card-content>
       </ng-container>
 
       <ng-container *ngIf="producto.tipo_producto === 'RAM'">
-        <ion-card-content class="contenido">-Capacidad: {{ producto.capacidad }}</ion-card-content>
-        <ion-card-content class="contenido">-Tipo: {{ producto.tipo }}</ion-card-content>
-        <ion-card-content class="contenido">-Formato: {{ producto.formato }}</ion-card-content>
-        <ion-card-content class="contenido">-Voltaje: {{ producto.voltaje }}</ion-card-content>
+        <ion-card-content class="contenido">Capacidad: {{ producto.capacidad }}</ion-card-content>
+        <ion-card-content class="contenido">Tipo: {{ producto.tipo }}</ion-card-content>
+        <ion-card-content class="contenido">Formato: {{ producto.formato }}</ion-card-content>
+        <ion-card-content class="contenido">Voltaje: {{ producto.voltaje }}</ion-card-content>
       </ng-container>
-
-      <ion-card-title class="precio">Precio: {{ producto.precio }}</ion-card-title>
-      <ion-card-title class="precio">Stock: {{ producto.stock }}</ion-card-title>
       <br>
     </ion-card-content>
   </ion-card>

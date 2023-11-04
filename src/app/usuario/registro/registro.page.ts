@@ -71,7 +71,7 @@ export class RegistroPage implements OnInit {
         this.usuario.email = this.registroForm.value.email;
         this.usuario.nombre = this.registroForm.value.nombre;
         this.usuario.uid = id;  
-        this.router.navigate(['/usuario/login']);
+        this.router.navigate(['/usuario/productos']);
         await this.firebase.createDoc(this.usuario, path, id).then(() => {
           console.log('Usuario agregado');
         });

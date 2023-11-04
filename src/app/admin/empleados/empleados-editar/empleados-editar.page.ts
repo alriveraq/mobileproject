@@ -42,14 +42,14 @@ export class EmpleadosEditarPage implements OnInit {
     this.actualizarempleado(this.route.snapshot.params['id']);
 
     this.empleadoForm = this.formBuilder.group({
-      empleado_nombre: [null, Validators.required],
-      empleado_apellidos: [null, Validators.required],
-      empleado_fecha_nacimiento: [null, Validators.required],
-      empleado_rut: [null, Validators.required],
-      empleado_direccion: [null, Validators.required],
-      empleado_telefono: [null, Validators.required],
-      empleado_email: [null, Validators.required],
-      empleado_turno: [null, Validators.required],
+      nombre: [null, Validators.required],
+      apellidos: [null, Validators.required],
+      fecha_nacimiento: [null, Validators.required],
+      rut: [null, Validators.required],
+      direccion: [null, Validators.required],
+      telefono: [null, Validators.required],
+      email: [null, Validators.required],
+      turno: [null, Validators.required],
     });
   }
 

@@ -21,15 +21,16 @@
         <ion-card-content class="contenido">-Voltaje: {{ producto.voltaje }}</ion-card-content>
       </ng-container>
 
-      <ion-card-title class="precio">Precio: {{ producto.precio }}</ion-card-title>
+      <ion-card-title class="precio">Precio: ${{ producto.precio }}</ion-card-title>
       <ion-card-title class="precio">Stock: {{ producto.stock }}</ion-card-title>
     </ion-card-content>
   </ion-card>
-
+  <br>
+  <br>
   <ion-card>
     <form  [formGroup]="comentarioform" (ngSubmit)="agregarcomentario()">
       <ion-item>
-        <ion-label>Comentario</ion-label>
+        <ion-label class="comentario">Comentario</ion-label>
         <ion-input formControlName="comentario" required></ion-input>
       </ion-item>
       <ion-button type="submit" shape="round" color="primary" expand="block"

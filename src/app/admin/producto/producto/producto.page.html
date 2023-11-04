@@ -1,10 +1,11 @@
 <app-header titulo="Producto"></app-header>
 <ion-content>
   <ion-card class="producto-carta" *ngFor="let producto of productos">
-    <img [src]="producto.img" alt="Imagen del Producto">
+    <img class="img" [src]="producto.img" alt="Imagen del Producto">
     <ion-card-header>
       <ion-card-title class="nombre-producto">{{ producto.nombre }}</ion-card-title>
     </ion-card-header>
+    <ion-card-title class="precio">Precio: ${{ producto.precio }}</ion-card-title>
     <ion-card-content>
       <ng-container *ngIf="producto.tipo_producto === 'GPU'">
         <ion-card-content class="contenido">-GPU: {{ producto.gpu }}</ion-card-content>
@@ -19,12 +20,21 @@
         <ion-card-content class="contenido">-Formato: {{ producto.formato }}</ion-card-content>
         <ion-card-content class="contenido">-Voltaje: {{ producto.voltaje }}</ion-card-content>
       </ng-container>
-
-      <ion-card-title class="precio">Precio: {{ producto.precio }}</ion-card-title>
+      <ion-fab slot="fixed" horizontal="start">
+        <ion-fab-button  color="medium" size="small">
+          <ion-icon name="caret-forward-outline"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="end">
+          <ion-fab-button color="warning" (click)="editarProductos(producto.id)"  >
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button color="danger" (click)="eliminarproducto(producto.id)">
+            <ion-icon name="trash-outline" ></ion-icon>
+          </ion-fab-button>
+        </ion-fab-list>
+      </ion-fab>
       <ion-card-title class="precio">Stock: {{ producto.stock }}</ion-card-title>
       <br>
-      <ion-button type="button" shape="round" color="dark" expand="block" (click)="editarProductos(producto.id)">Editar</ion-button>
-      <ion-button type="button" shape="round" color="danger" expand="block" (click)="eliminarproducto(producto.id)">Eliminar</ion-button>
     </ion-card-content>
   </ion-card>
   

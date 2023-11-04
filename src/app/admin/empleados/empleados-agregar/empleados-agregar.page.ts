@@ -85,7 +85,7 @@ export class EmpleadosAgregarPage implements OnInit {
       img: this.img64
     };
     this.firestore.agregarempleado(empleado).then(() => {
-      this.loadingController.dismiss();
+      this.loading = false;
       this.router.navigate(['/admin/empleados']);
     });
   }

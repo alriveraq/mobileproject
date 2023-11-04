@@ -72,7 +72,7 @@ export class SubcategoriaAgregarPage implements OnInit {
     this.subcate.agregarsubc(subcategoria).then(() => {
       this.loading = false;
       console.log(subcategoria);
-      this.router.navigate(['/admin/subcategorias']);
+      this.router.navigate(['/admin/subcategoria']);
     });
   }
 }

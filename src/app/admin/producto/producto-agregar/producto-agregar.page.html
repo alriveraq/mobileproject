@@ -57,7 +57,10 @@
       <ion-input formControlName="stock"  type= number required></ion-input>
     </ion-item>
     
-
+    <ion-item *ngIf="productoform.value.tipo_producto === 'RAM'">
+      <ion-label>Nombre del producto</ion-label>
+      <ion-input formControlName="nombre" required></ion-input>
+    </ion-item>
 
     <ion-item *ngIf="productoform.value.tipo_producto === 'RAM'">
       <ion-label>Capacidad</ion-label>
@@ -87,6 +90,13 @@
     <ion-item *ngIf="productoform.value.tipo_producto === 'RAM'">
       <ion-label>Precio</ion-label>
       <ion-input formControlName="precio" type=number required></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="productoform.value.tipo_producto === 'RAM'">
+      <ion-label>Subcategoria</ion-label>
+      <ion-select formControlName="subcategoria" required>
+        <ion-select-option value="{{subcategoria.id}}" *ngFor="let subcategoria of subcategorias">{{subcategoria.nombre}}</ion-select-option>
+      </ion-select>
     </ion-item>
 
     <ion-item *ngIf="productoform.value.tipo_producto === 'RAM'">
