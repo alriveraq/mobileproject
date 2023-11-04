@@ -57,7 +57,7 @@ export class EmpleadosPage implements OnInit {
   editarEmpleados(empleadoId: string) {
     // Redirige a la página "categoria-editar" con el ID de la categoría como parámetro
     console.log("editarCategoria **************** ID:" + empleadoId);
-    this.navCtrl.navigateForward(`/empleados-editar/${empleadoId}`);
+    this.navCtrl.navigateForward(`admin/empleados-editar/${empleadoId}`);
   }
 
   async getempleado() {
