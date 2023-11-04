@@ -14,7 +14,6 @@
         <ion-card-content class="contenido">-Bus: {{ producto.bus }}</ion-card-content>
       </ng-container>
 
-<<<<<<< HEAD
       <ng-container *ngIf="producto.tipo_producto === 'RAM'">
         <ion-card-content class="contenido">-Capacidad: {{ producto.capacidad }}</ion-card-content>
         <ion-card-content class="contenido">-Tipo: {{ producto.tipo }}</ion-card-content>
@@ -38,64 +37,6 @@
       <br>
     </ion-card-content>
   </ion-card>
-=======
-  <ion-content>
-    <ion-item>
-      <ion-label>Tipo de Producto</ion-label>
-      <ion-select [(ngModel)]="tipoProductoSeleccionado" (ionChange)="filtrarProductos()">
-        <ion-select-option value="GPU">GPU</ion-select-option>
-        <ion-select-option value="RAM">RAM</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-grid [fixed]="true">
-      <ion-row>
-        <ion-col></ion-col>
-        <ion-col><ion-card class="producto-carta" *ngFor="let producto of productosFiltrados">
-          <img [src]="producto.img" alt="Imagen del Producto">
-          <ion-card-header>
-            <ion-card-title class="nombre-producto" >{{ producto.nombre }}</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            
-            
-            <!-- Agregar condicionales para características específicas -->
-        
-            <!-- Si el tipo de producto es "GPU", mostrar detalles de GPU -->
-            <ng-container  *ngIf="producto.tipo_producto === 'GPU'">
-              <ion-card-content class="contenido">-GPU: {{ producto.gpu }}</ion-card-content>
-              <ion-card-content class="contenido">-Memoria: {{ producto.memoria }}</ion-card-content>
-              <ion-card-content class="contenido">-Frecuencia: {{ producto.frecuencia }}</ion-card-content>
-              <ion-card-content class="contenido">-Bus: {{ producto.bus }}</ion-card-content>
-            </ng-container>
-        
-            <!-- Si el tipo de producto es "RAM", mostrar detalles de RAM -->
-            <ng-container *ngIf="producto.tipo_producto === 'RAM'">
-              <ion-card-content class="contenido">-Capacidad: {{ producto.capacidad }}</ion-card-content>
-              <ion-card-content class="contenido">-Tipo: {{ producto.tipo }}</ion-card-content>
-              <ion-card-content class="contenido">-Formato: {{ producto.formato }}</ion-card-content>
-              <ion-card-content class="contenido">-Voltaje: {{ producto.voltaje }}</ion-card-content>
-            </ng-container>
-        
-            <ion-card-title class="precio">Precio: {{ producto.precio }}</ion-card-title>
-            <br>
-            <ion-button  type="button" shape="round" color="dark" expand="block" (click)="editarProductos(producto.id)">Editar</ion-button>
-              <ion-button  type="button" shape="round" color="danger" expand="block" (click)="eliminar(producto.id)">Eliminar</ion-button>
-          </ion-card-content>
-        </ion-card>
-      
-        </ion-col>
-        
-        <ion-col>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-      <ion-fab-button routerLink="/admin/producto-agregar">
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-</ion-content> 
->>>>>>> 289cfbfc14642033faa159edb58f71fac81de0e3
   
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button routerLink="/admin/producto-agregar">
