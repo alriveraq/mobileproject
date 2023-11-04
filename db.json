@@ -30,45 +30,8 @@
       "id": 1
     },
     {
-      "id": 2,
-      "nombre": "Alejandro",
-      "apellidos": "Rivera",
-      "fecha_nacimiento": "2001/10/03",
-      "rut": "11111111-1",
-      "direccion": "Calle falsa 111",
-      "telefono": "+569 12345679",
-      "email": "al.riveraq@duocuc.cl",
-      "turno": "2",
-      "img": "https://img.freepik.com/foto-gratis/retrato-joven-trabajador-casco-gran-planta-metalurgica_146671-19570.jpg?w=2000"
-    },
-    {
-      "id": 3,
-      "nombre": "Alejandro",
-      "apellidos": "Rivera",
-      "fecha_nacimiento": "2021-05-06T23:43:00",
-      "rut": "11111111-1",
-      "direccion": "Calle falsa 111",
-      "telefono": "+569 12345679",
-      "email": "al.riveraq@duocuc.cl",
-      "turno": "1",
-      "img": "https://media.solotodo.com/media/products/MSI_N210-MD1G-D3.jpg"
-    },
-    {
-      "id": 4,
-      "nombre": "wefewf",
-      "apellidos": "jbhbhj",
-      "fecha_nacimiento": "jbhjhjbh",
-      "rut": "jbhbhj",
-      "direccion": "bhjjbh",
-      "telefono": "jbhjbh",
-      "email": "bhjjbhjbh",
-      "turno": "bhjjbhjbh",
-      "img": "bhjjhbbhj"
-    },
-    {
       "nombre": "asd",
-      "tipo_producto": "GPU",
-      "img": "asd",
+      "img": "https://i.blogs.es/eaee2c/amdradeonrx6600-ap/1366_2000.jpeg",
       "gpu": "das",
       "memoria": "asd",
       "frecuencia": "asd",
@@ -78,17 +41,18 @@
       "tipo": null,
       "formato": null,
       "voltaje": null,
+      "tipo_producto": "GPU",
       "id": 5
     },
     {
-      "nombre": "adsdas",
+      "nombre": "GPU",
       "tipo_producto": "GPU",
-      "img": "dasads",
-      "gpu": "dassda",
-      "memoria": "sda",
-      "frecuencia": "ads",
-      "bus": "ads",
-      "precio": 321123,
+      "img": "https://http2.mlstatic.com/D_NQ_NP_811554-MLA45732042314_042021-O.webp",
+      "gpu": "NVIDIA",
+      "memoria": "219399",
+      "frecuencia": "13299132",
+      "bus": "13JQDWJ",
+      "precio": 8100000,
       "capacidad": null,
       "tipo": null,
       "formato": null,
@@ -227,6 +191,22 @@
       "direccion": "a",
       "telefono": "a",
       "email": "a"
+    }
+  ],
+  "usuarios": [
+    {
+      "id": 1,
+      "nombre_usuario": "Syzoth",
+      "email": "aleparique@gmail.com",
+      "contrasena": "appdata12",
+      "img": "oa"
+    },
+    {
+      "id": 2,
+      "nombre_usuario": "Syzhot",
+      "email": "aleparique@gmail.com",
+      "contrasena": "appdata12",
+      "img": "ejemplo1"
     }
   ]
 }
