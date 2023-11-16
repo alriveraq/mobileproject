@@ -1,7 +1,7 @@
 <app-header titulo="Productos"></app-header>
 
 <ion-content>
-  <ion-card class="producto-carta" *ngFor="let producto of productos" (click)="verproducto(producto.id)" >
+  <ion-card class="producto-carta" *ngFor="let producto of productos" >
     <img class="img" [src]="producto.img" alt="Imagen del Producto">
     <ion-card-header>
       <ion-card-title class="nombre-producto">{{ producto.nombre }}</ion-card-title>
@@ -22,6 +22,8 @@
         <ion-card-content class="contenido">Voltaje: {{ producto.voltaje }}</ion-card-content>
       </ng-container>
       <br>
+      <ion-button *ngIf="login === false" (click)="agregaralcarro(producto)" >Agregar al carrito</ion-button>
+      <ion-button *ngIf="login === true" (click)="agregarAlCarrito(producto)">Loged</ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>

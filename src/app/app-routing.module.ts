@@ -14,7 +14,8 @@ const routes: Routes = [
   {
     path: 'usuario',
     loadChildren: () => import('./usuario/user/user.module').then( m => m.UserModule)
-  },
+  }
+
 
 
 

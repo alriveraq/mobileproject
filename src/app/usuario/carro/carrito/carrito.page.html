@@ -1,0 +1,21 @@
+<app-header titulo="Carrito"></app-header>
+
+<ion-content *ngIf="login === false">
+  <ion-list  *ngFor="let item of obtenerCarrito(); let i = index">
+    <ion-item>
+      {{ item.nombre }} - {{ item.precio | currency: 'USD' }}
+    </ion-item>
+    <ion-button color="danger" slot="end" (click)="eliminarDelCarrito(i)">
+      Eliminar
+    </ion-button>
+  </ion-list>
+</ion-content>
+
+<ion-content *ngIf="login === true">
+  <ion-list *ngFor="let item of carritoItems">
+  <ion-item>
+    {{ item.producto.nombre }} - {{ item.producto.precio | currency: 'CLP' }}
+  </ion-item>
+  <ion-button (click)="eliminarDelCarritol(item.id)" slot="end">Eliminar del carrito</ion-button>
+  </ion-list>
+</ion-content>
