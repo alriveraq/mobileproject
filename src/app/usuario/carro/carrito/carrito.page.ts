@@ -10,6 +10,7 @@ import { Carro } from 'src/app/admin/interface-admin/carro';
 })
 export class CarritoPage implements OnInit {
   carritoItems: Carro[] = [];
+  
 login = false;
   constructor(private car: CarroService,
     private auth: AuthService) {
@@ -36,6 +37,10 @@ login = false;
 
   eliminarDelCarrito(index: number): void {
     this.car.eliminarDelCarrito(index);
+  }
+  calcularTotalNoAutenticado(carritoNoAutenticado: any[]): number {
+    // La lógica para calcular el total en el carrito no autenticado
+    return carritoNoAutenticado.reduce((total, item) => total + item.precio, 0);
   }
 
   //con login
@@ -86,8 +91,15 @@ login = false;
   } catch (error) {
     console.error('Error al eliminar el producto del carrito:', error);
   }
-}
+  }
+  calcularTotal(): number {
+    return this.carritoItems.reduce((total, item) => total + item.producto.precio, 0);
+  }
 
+  formatNumber(value: number): string {
+    // Lógica personalizada para agregar puntos como separadores de miles
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  }
 
 
 

@@ -96,4 +96,9 @@ export class ProducdetailPage implements OnInit {
     })
   }
 
+  formatNumber(value: number): string {
+    // Lógica personalizada para agregar puntos como separadores de miles
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  }
+
 }

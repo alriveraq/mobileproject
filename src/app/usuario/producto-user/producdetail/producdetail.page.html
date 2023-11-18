@@ -21,7 +21,7 @@
         <ion-card-content class="contenido">-Voltaje: {{ producto.voltaje }}</ion-card-content>
       </ng-container>
 
-      <ion-card-title class="precio">Precio: ${{ producto.precio }}</ion-card-title>
+      <ion-card-title class="precio">Precio: {{formatNumber (producto.precio) }}</ion-card-title>
       <ion-card-title class="precio">Stock: {{ producto.stock }}</ion-card-title>
     </ion-card-content>
   </ion-card>

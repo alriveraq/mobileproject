@@ -6,7 +6,7 @@
     <ion-card-header>
       <ion-card-title class="nombre-producto">{{ producto.nombre }}</ion-card-title>
     </ion-card-header>
-    <ion-card-title class="precio">Precio: ${{ producto.precio }}</ion-card-title>
+    <ion-card-title class="precio">Precio: {{formatNumber (producto.precio) }}</ion-card-title>
     <ion-card-content>
       <ng-container *ngIf="producto.tipo_producto === 'GPU'">
         <ion-card-content class="contenido">GPU: {{ producto.gpu }}</ion-card-content>
