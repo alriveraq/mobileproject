@@ -1,14 +1,27 @@
 <app-header titulo="Carrito"></app-header>
 
+
 <ion-content *ngIf="login === false">
-  <ion-list  *ngFor="let item of obtenerCarrito(); let i = index">
-    <ion-item>
-      {{ item.nombre }} - {{ formatNumber(item.precio)}}
-    </ion-item>
-    <ion-button color="danger" slot="end" (click)="eliminarDelCarrito(i)">
-      Eliminar
-    </ion-button>
-  </ion-list>
+  <ion-card  *ngFor="let item of obtenerCarrito(); let i = index">
+    <ion-card-header>
+      <ion-card-title>
+        {{ item.nombre }}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-thumbnail slot="start">
+            <img alt="Silhouette of mountains" [src]="item.img"/>
+          </ion-thumbnail>
+          <h1>
+             ${{ formatNumber(item.precio)}}
+          </h1>
+          <ion-button color="danger" slot="end" (click)="eliminarDelCarrito(i)"> Eliminar</ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
   <ion-item>
     <ion-label>Total:</ion-label>
     <ion-label>CLP {{ formatNumber(calcularTotalNoAutenticado(obtenerCarrito())) }}</ion-label>
@@ -16,12 +29,26 @@
 </ion-content>
 
 <ion-content *ngIf="login === true">
-  <ion-list *ngFor="let item of carritoItems">
-  <ion-item>
-    {{ item.producto.nombre }} - {{ formatNumber(item.producto.precio)}}
-  </ion-item>
-  <ion-button (click)="eliminarDelCarritol(item.id)" slot="end">Eliminar del carrito</ion-button>
-  </ion-list>
+  <ion-card *ngFor="let item of carritoItems">
+    <ion-card-header>
+      <ion-card-title>
+        {{ item.producto.nombre }}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-thumbnail slot="start">
+            <img alt="Silhouette of mountains" [src]="item.producto.img"/>
+          </ion-thumbnail>
+          <h1>
+             ${{ formatNumber(item.producto.precio)}}
+          </h1>
+          <ion-button color="danger"  (click)="eliminarDelCarritol(item.id)" slot="end">Eliminar</ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card> 
   <ion-item>
     <ion-label>Total:</ion-label>
     <ion-label>CLP {{ formatNumber(calcularTotal())}}</ion-label>
