@@ -78,6 +78,14 @@ export class CarroService {
   }
 
   return this.db.collection(`carritos/${uid}/items`).doc(itemid).delete();
-}
+ }
+  
+  eliminarCarritol(uid: string): Promise<void> {
+    return this.db.collection(`carritos/${uid}/items`).ref.get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        doc.ref.delete();
+      });
+    });
+  }
 
 }

@@ -27,6 +27,8 @@ export class FacturaPage implements OnInit {
     total: 0
   };
 
+  login = false;
+
   constructor(
     private car: CarroService,
     private auth: AuthService,
@@ -35,7 +37,18 @@ export class FacturaPage implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.auth.stateuser().subscribe(res => {
+        if (res){
+          console.log('loged');
+          this.login = true;
+        } else {
+          console.log('not loged');
+          this.login = false;
+        }
+        console.log(res);
+      });
     this.obtenerCarritol();
+    this.obtenerCarrito();
     this.facturaform = this.formBuilder.group({
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
@@ -43,6 +56,9 @@ export class FacturaPage implements OnInit {
       telefono: ['', Validators.required],
       rut: ['', Validators.required],
     });
+  }
+  obtenerCarrito(): any[] { 
+    return this.car.getCarrito();
   }
 
   async obtenerCarritol() {
@@ -58,7 +74,6 @@ export class FacturaPage implements OnInit {
 
           console.log('Carrito obtenido con éxito:', this.carritoItems);
           // Actualizar el valor del campo "total" en el formulario
-          this.facturaform.patchValue({ total: this.calcularTotal() });
         });
       } else {
         console.error('Usuario no autenticado');
@@ -70,6 +85,7 @@ export class FacturaPage implements OnInit {
 
   async agregarfactura() {
     const uid = await this.auth.getuid();
+    const totalActual = this.calcularTotal();
     const factura: any = {
       uid: uid,
       nombre: this.facturaform.value.nombre,
@@ -77,7 +93,7 @@ export class FacturaPage implements OnInit {
       correo: this.facturaform.value.correo,
       telefono: this.facturaform.value.telefono,
       rut: this.facturaform.value.rut,
-      total: this.facturaform.value.total
+      total: totalActual
     };
 
     this.firestore.agregarfactura(factura).then(
@@ -100,5 +116,21 @@ export class FacturaPage implements OnInit {
   formatNumber(value: number): string {
     // Lógica personalizada para agregar puntos como separadores de miles
     return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  }
+
+  //eliminamos todo el carro con login
+  async eliminarCarritol() {
+    try {
+      const uid = await this.auth.getuid();
+
+      if (uid) {
+        await this.car.eliminarCarritol(uid);
+        console.log('Carrito eliminado con éxito.');
+      } else {
+        console.error('Usuario no autenticado');
+      }
+    } catch (error) {
+      console.error('Error al eliminar el carrito:', error);
+    }
   }
 }
