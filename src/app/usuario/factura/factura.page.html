@@ -1,112 +1,148 @@
 <app-header titulo="Factura"></app-header>
 
 <ion-content *ngIf="login === true">
-  <ion-card *ngFor="let item of carritoItems">
-    <ion-card-header>
-      <ion-card-title>
-        {{ item.producto.nombre }}
-      </ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-list>
-        <ion-item>
-          <ion-thumbnail slot="start">
-            <img alt="Silhouette of mountains" [src]="item.producto.img" />
-          </ion-thumbnail>
-          <h1>
-            ${{ formatNumber(item.producto.precio)}}
-          </h1>
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
-  <ion-item>
-    <ion-label>Total:</ion-label>
-    <ion-label>CLP {{ formatNumber(calcularTotal())}}</ion-label>
-  </ion-item>
-
   <!-- Formulario para ingresar detalles de la factura -->
   <form [formGroup]="facturaform" (ngSubmit)="agregarfactura()">
-    <ion-item>
-      <ion-label position="floating">Nombre</ion-label>
-      <ion-input formControlName="nombre" type="text"></ion-input>
-    </ion-item>
+    <ion-grid>
+      <ion-row >
+        <ion-col >
+          <ion-item class="Formulario">
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input formControlName="nombre" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col  >
+          <ion-item class="Formulario">
+            <ion-label position="floating">Apellido</ion-label>
+            <ion-input formControlName="apellido" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col >
+          <ion-card *ngFor="let item of carritoItems">
+            <ion-card-header>
+              <ion-card-title>
+                {{ item.producto.nombre }}
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-list>
+                <ion-item>
+                  <ion-thumbnail slot="start">
+                    <img alt="Silhouette of mountains" [src]="item.producto.img" />
+                  </ion-thumbnail>
+                  <h1>
+                    ${{ formatNumber(item.producto.precio)}}
+                  </h1>
+                </ion-item>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+          <ion-item>
+            <ion-label>Total:</ion-label>
+            <ion-label>CLP {{ formatNumber(calcularTotal())}}</ion-label>
+          </ion-item>
+        </ion-col>
 
-    <ion-item>
-      <ion-label position="floating">Apellido</ion-label>
-      <ion-input formControlName="apellido" type="text"></ion-input>
-    </ion-item>
+        
+        <ion-col class="xd1" size="5" size-md="8" size-lg="1">
+          <ion-item class="Formulario">
+            <ion-label position="floating">Correo</ion-label>
+            <ion-input formControlName="correo" type="email"></ion-input>
+          </ion-item>
+        </ion-col>
 
-    <ion-item>
-      <ion-label position="floating">Correo</ion-label>
-      <ion-input formControlName="correo" type="email"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Teléfono</ion-label>
-      <ion-input formControlName="telefono" type="tel"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">RUT</ion-label>
-      <ion-input formControlName="rut" type="text"></ion-input>
-    </ion-item>
+        <ion-col class="xd2" size="1" size-md="8" size-lg="1">
+          <ion-item class="Formulario">
+            <ion-label position="floating">Teléfono</ion-label>
+            <ion-input formControlName="telefono" type="tel"></ion-input>
+          </ion-item> 
+        </ion-col>
+          
+        <ion-col class="xd3" size="1" size-md="8" size-lg="1">
+          <ion-item class="Formulario">
+            <ion-label position="floating">RUT</ion-label>
+            <ion-input formControlName="rut" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+        
+      </ion-row>
+    
+    </ion-grid>
 
     <ion-button expand="full" (click)="eliminarCarritol()" type="submit">Guardar Factura</ion-button>
   </form>
 </ion-content>
 
 <ion-content *ngIf="login === false">
-  <ion-card *ngFor="let item of obtenerCarrito(); let i = index">
-    <ion-card-header>
-      <ion-card-title>
-        {{ item.nombre }}
-      </ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-list>
-        <ion-item>
-          <ion-thumbnail slot="start">
-            <img alt="Silhouette of mountains" [src]="item.img" />
-          </ion-thumbnail>
-          <h1>
-            ${{ formatNumber(item.precio)}}
-          </h1>
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
-  <ion-item>
-    <ion-label>Total:</ion-label>
-    <ion-label>CLP {{ formatNumber(calcularTotal())}}</ion-label>
-  </ion-item>
-
   <!-- Formulario para ingresar detalles de la factura -->
   <form [formGroup]="facturaform" (ngSubmit)="agregarfactura()">
-    <ion-item>
-      <ion-label position="floating">Nombre</ion-label>
-      <ion-input formControlName="nombre" type="text"></ion-input>
-    </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Apellido</ion-label>
-      <ion-input formControlName="apellido" type="text"></ion-input>
-    </ion-item>
+    
+    <ion-grid>
+      <ion-row >
+        <ion-col >
+          <ion-item class="Formulario">
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input formControlName="nombre" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col  >
+          <ion-item class="Formulario">
+            <ion-label position="floating">Apellido</ion-label>
+            <ion-input formControlName="apellido" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col >
+          <ion-card *ngFor="let item of obtenerCarrito(); let i = index">
+            <ion-card-header>
+              <ion-card-title>
+                {{ item.nombre }}
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-list>
+                <ion-item>
+                  <ion-thumbnail slot="start">
+                    <img alt="Silhouette of mountains" [src]="item.img" />
+                  </ion-thumbnail>
+                  <h1>
+                    ${{ formatNumber(item.precio)}}
+                  </h1>
+                </ion-item>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+          <ion-item>
+            <ion-label>Total:</ion-label>
+            <ion-label>CLP {{ formatNumber(calcularTotal())}}</ion-label>
+          </ion-item>
+        </ion-col>
 
-    <ion-item>
-      <ion-label position="floating">Correo</ion-label>
-      <ion-input formControlName="correo" type="email"></ion-input>
-    </ion-item>
+        <ion-col class="xd1" size="5" size-md="8" size-lg="1">
+          <ion-item class="Formulario">
+            <ion-label position="floating">Correo</ion-label>
+            <ion-input formControlName="correo" type="email"></ion-input>
+          </ion-item>
+        </ion-col>
 
-    <ion-item>
-      <ion-label position="floating">Teléfono</ion-label>
-      <ion-input formControlName="telefono" type="tel"></ion-input>
-    </ion-item>
+        <ion-col class="xd2" size="1" size-md="8" size-lg="1">
+          <ion-item class="Formulario">
+            <ion-label position="floating">Teléfono</ion-label>
+            <ion-input formControlName="telefono" type="tel"></ion-input>
+          </ion-item> 
+        </ion-col>
+          
+        <ion-col class="xd3" size="1" size-md="8" size-lg="1">
+          <ion-item class="Formulario">
+            <ion-label position="floating">RUT</ion-label>
+            <ion-input formControlName="rut" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
 
-    <ion-item>
-      <ion-label position="floating">RUT</ion-label>
-      <ion-input formControlName="rut" type="text"></ion-input>
-    </ion-item>
+        
+      </ion-row>
+      
+    </ion-grid>
 
     <ion-button expand="full" (click)="eliminarCarrito()" type="submit">Guardar Factura</ion-button>
   </form>
