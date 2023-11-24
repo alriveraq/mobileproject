@@ -22,8 +22,9 @@
         <ion-card-content class="contenido">Voltaje: {{ producto.voltaje }}</ion-card-content>
       </ng-container>
       <br>
+      <ion-button  (click)="verproducto(producto.id)" >Ver mas</ion-button>
       <ion-button *ngIf="login === false" (click)="agregaralcarro(producto)" >Agregar al carrito</ion-button>
-      <ion-button *ngIf="login === true" (click)="agregarAlCarrito(producto)">Loged</ion-button>
+      <ion-button *ngIf="login === true" (click)="agregarAlCarrito(producto)">Agregar al carrito</ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>
