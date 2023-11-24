@@ -42,6 +42,10 @@ export class CarroService {
   private actualizarcarrito(): void{
     localStorage.setItem('carrito', JSON.stringify(this.carrito));
   }
+  eliminarCarrito(): void{
+    this.carrito = [];
+    this.actualizarcarrito();
+  }
 
   //carrito con login
   //conseguimos la uid del usuario

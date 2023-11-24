@@ -107,11 +107,16 @@ export class FacturaPage implements OnInit {
   }
 
   calcularTotal(): number {
+    // La lógica para calcular el total en el carrito no autenticado
+    if (this.login == false) {
+      return this.obtenerCarrito().reduce((total, item) => total + item.precio, 0);
+    }
     return this.carritoItems.reduce(
       (total, item) => total + item.producto.precio,
       0
     );
   }
+  
 
   formatNumber(value: number): string {
     // Lógica personalizada para agregar puntos como separadores de miles
@@ -132,5 +137,12 @@ export class FacturaPage implements OnInit {
     } catch (error) {
       console.error('Error al eliminar el carrito:', error);
     }
+  }
+
+  //eliminamos todo el carro sin login pero con un delay
+  eliminarCarrito(): void {
+    setTimeout(() => {
+      this.car.eliminarCarrito();
+    }, 3000);
   }
 }
