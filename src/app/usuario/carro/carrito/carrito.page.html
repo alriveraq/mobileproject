@@ -13,6 +13,7 @@
     <ion-label>Total:</ion-label>
     <ion-label>CLP {{ formatNumber(calcularTotalNoAutenticado(obtenerCarrito())) }}</ion-label>
   </ion-item>
+  <ion-button routerLink="/usuario/factura">Comprar</ion-button>
 </ion-content>
 
 <ion-content *ngIf="login === true">
@@ -27,4 +28,5 @@
     <ion-label>CLP {{ formatNumber(calcularTotal())}}</ion-label>
   </ion-item>
   <ion-label *ngIf="carritoItems && carritoItems.length === 0">El carrito está vacío.</ion-label>
+  <ion-button routerLink="/usuario/factura">Comprar</ion-button>
 </ion-content>

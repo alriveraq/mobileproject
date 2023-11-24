@@ -11,6 +11,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
 import { ProducdetailPage } from '../producto-user/producdetail/producdetail.page';
 import { VerperfilPage } from '../perfil/verperfil/verperfil.page';
 import { CarritoPage } from '../carro/carrito/carrito.page';
+import { FacturaPage } from '../factura/factura.page';
 
 
 
@@ -21,7 +22,8 @@ import { CarritoPage } from '../carro/carrito/carrito.page';
     ProductoUsuarioPage,
     ProducdetailPage,
     VerperfilPage,
-    CarritoPage
+    CarritoPage,
+    FacturaPage
   ],
   imports: [
     CommonModule,

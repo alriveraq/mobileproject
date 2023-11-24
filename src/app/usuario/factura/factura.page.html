@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>factura</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngFor="let item of carritoItems">
+    <ion-item>
+      {{ item.producto.nombre }} - {{ formatNumber(item.producto.precio)}}
+    </ion-item>
+  </ion-list>
+  <ion-item>
+    <ion-label>Total:</ion-label>
+    <ion-label>CLP {{ formatNumber(calcularTotal())}}</ion-label>
+  </ion-item>
+  <ion-label *ngIf="carritoItems && carritoItems.length === 0">El carrito está vacío.</ion-label>
+
+  <!-- Formulario para ingresar detalles de la factura -->
+  <form [formGroup]="facturaform" (ngSubmit)="agregarfactura()">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input formControlName="nombre" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Apellido</ion-label>
+      <ion-input formControlName="apellido" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Correo</ion-label>
+      <ion-input formControlName="correo" type="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Teléfono</ion-label>
+      <ion-input formControlName="telefono" type="tel"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">RUT</ion-label>
+      <ion-input formControlName="rut" type="text"></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" type="submit">Guardar Factura</ion-button>
+  </form>
+</ion-content>
