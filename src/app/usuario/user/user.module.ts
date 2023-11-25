@@ -12,6 +12,7 @@ import { ProducdetailPage } from '../producto-user/producdetail/producdetail.pag
 import { VerperfilPage } from '../perfil/verperfil/verperfil.page';
 import { CarritoPage } from '../carro/carrito/carrito.page';
 import { FacturaPage } from '../factura/factura.page';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 
 
@@ -31,7 +32,8 @@ import { FacturaPage } from '../factura/factura.page';
     IonicModule,
     ReactiveFormsModule,
     FormsModule,
-    ComponentsModule
+    ComponentsModule,
+    NgxPayPalModule
   ]
 })
 export class UserModule { }

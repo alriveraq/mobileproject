@@ -2,7 +2,7 @@
 
 <ion-content *ngIf="login === true">
   <!-- Formulario para ingresar detalles de la factura -->
-  <form [formGroup]="facturaform" (ngSubmit)="agregarfactura()">
+  <form [formGroup]="facturaform" >
     <ion-grid>
       <ion-row >
         <ion-col >
@@ -68,14 +68,13 @@
       </ion-row>
     
     </ion-grid>
-
-    <ion-button expand="full" (click)="eliminarCarritol()" type="submit">Guardar Factura</ion-button>
+    <ngx-paypal [config]="payPalconfig"></ngx-paypal>
   </form>
 </ion-content>
 
 <ion-content *ngIf="login === false">
   <!-- Formulario para ingresar detalles de la factura -->
-  <form [formGroup]="facturaform" (ngSubmit)="agregarfactura()">
+  <form [formGroup]="facturaform">
 
     
     <ion-grid>
@@ -141,9 +140,10 @@
 
         
       </ion-row>
-      
     </ion-grid>
-
-    <ion-button expand="full" (click)="eliminarCarrito()" type="submit">Guardar Factura</ion-button>
+    <ngx-paypal [config]="payPalconfig"></ngx-paypal>
   </form>
 </ion-content>
+
+
+

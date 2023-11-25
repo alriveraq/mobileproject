@@ -12,11 +12,12 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { getAuth, provideAuth } from '@angular/fire/auth';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, ReactiveFormsModule,AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,provideAuth(() => getAuth()),],
+    AngularFirestoreModule,provideAuth(() => getAuth()), NgxPayPalModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
